@@ -7,5 +7,7 @@
 
 
 
+void uart_setup(void);
+void put_s(char *data);
 
 #endif

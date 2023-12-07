@@ -2,9 +2,8 @@ EXTERN(vector_table)
 ENTRY(reset_handler)
 MEMORY
 {
- ram (rwx) : ORIGIN = 0x20000000, LENGTH = 80K
+ ram (rwx) : ORIGIN = 0x20000000, LENGTH = 128K
  rom (rx) : ORIGIN = 0x08000000, LENGTH = 512K
- eep (r) : ORIGIN = 0x08080000, LENGTH = 16K
 }
 SECTIONS
 {

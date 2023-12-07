@@ -1,4 +1,4 @@
-#include "lcd_driver.h"
+#include "drivers/includes/lcd_driver.h"
 
 
 void i2c1_setup(void)
@@ -11,10 +11,9 @@ void i2c1_setup(void)
 	gpio_set_af(GPIOA, GPIO_AF4, SCL);
 	gpio_set_af(GPIOA, GPIO_AF4, SDA);
 
-	i2c_enable_stretching(I2C1);
-	i2c_enable_analog_filter(I2C1);
-	i2c_set_7bit_addr_mode(I2C1);
+	//i2c_enable_stretching(I2C1);
+	//i2c_enable_analog_filter(I2C1);
+	//i2c_set_7bit_addr_mode(I2C1);
 	i2c_set_speed(I2C1,i2c_speed_sm_100k, 8);
 	i2c_peripheral_enable(I2C1);
-
 }
