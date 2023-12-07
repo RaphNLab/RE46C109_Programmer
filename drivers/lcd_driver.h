@@ -1,5 +1,5 @@
-#ifndef _FLASH_DRIVER_H_
-#define _FLASH_DRIVER_H_
+#ifndef LCD_DRIVER_H_
+#define LCD_DRIVER_H_
 
 #include "global.h"
 #include <libopencm3/stm32/i2c.h>

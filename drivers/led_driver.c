@@ -1,4 +1,4 @@
-#include "drivers/includes/led_driver.h"
+#include "led_driver.h"
 
 void gpio_setup(void)
 {

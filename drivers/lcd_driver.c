@@ -1,4 +1,4 @@
-#include "drivers/includes/lcd_driver.h"
+#include "lcd_driver.h"
 
 
 void i2c1_setup(void)

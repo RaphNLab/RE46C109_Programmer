@@ -1,5 +1,5 @@
-#ifndef _GLOBAL_H_
-#define _GLOBAL_H_
+#ifndef __GLOBAL_H__
+#define __GLOBAL_H__
 
 #include <stdio.h>
 #include <stdint.h>
@@ -9,6 +9,7 @@
 #include <libopencm3/cm3/nvic.h>
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
+
 
 
 typedef enum

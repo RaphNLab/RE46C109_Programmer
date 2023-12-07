@@ -1,5 +1,4 @@
-#include "drivers/includes/serial_driver.h"
-
+#include "serial_driver.h"
 
 
 int _write(int file, char *ptr, int len)

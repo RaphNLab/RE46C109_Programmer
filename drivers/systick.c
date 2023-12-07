@@ -9,7 +9,7 @@
 #include <libopencm3/cm3/systick.h>
 #include <stdio.h>
 
-#include "drivers/includes/systick.h"
+#include "systick.h"
 
 /* monotonically increasing number of milliseconds from reset
  * overflows every 49 days if you're wondering
