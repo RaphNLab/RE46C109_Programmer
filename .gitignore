@@ -3,3 +3,5 @@ generated.*
 .ld
 .project
 .cproject
+*.bin
+*.elf
