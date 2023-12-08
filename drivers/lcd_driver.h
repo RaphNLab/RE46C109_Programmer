@@ -9,7 +9,7 @@
 #define DEV_ID
 
 
-void i2c1_setup(void);
+void lcd_config(void);
 
 
 #endif

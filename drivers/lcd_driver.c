@@ -1,8 +1,11 @@
 #include "lcd_driver.h"
 
 
-void i2c1_setup(void)
+void lcd_config(void)
 {
+	rcc_periph_clock_enable(RCC_I2C1);
+	rcc_periph_clock_enable(RCC_GPIOA);
+
 	// Setup SDA and SLC for I2C communication/
 	gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, SCL);
 	gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, SDA);

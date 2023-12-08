@@ -7,7 +7,7 @@
 
 
 int _write(int file, char *ptr, int len);
-void uart_setup(void);
-void put_s(char *data);
+void serial_config(void);
+void serial_put_s(char *data);
 
 #endif
