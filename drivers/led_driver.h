@@ -3,7 +3,6 @@
 
 #include "global.h"
 #include "delay_driver.h"
-#include "systick.h"
 
 #define GREEN_LED	GPIO12
 #define ORANGE_LED	GPIO13

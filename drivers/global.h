@@ -19,5 +19,12 @@ typedef enum
 }bool_t;
 
 
+typedef enum
+{
+	GLOBAL_OK,
+	GLOBAL_ERROR,
+	GLOBAL_TIMEOUT_ERROR
+}status_t;
+
 
 #endif
