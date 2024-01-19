@@ -16,8 +16,6 @@ const uint8_t escalator[8] =
 		};
 
 
-
-
 /*Configure the DAC for convertion*/
 void dac_config(void)
 {

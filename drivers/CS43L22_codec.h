@@ -43,6 +43,8 @@
 #define CS43L22_CHARGE_PUMP_FREQ	0x32U
 
 
+#define CS43L22_MIN_VOL_DB			0x19U
+#define CS43L22_MAX_VOL_DB			0x18U
 
 #define I2C_SCL		GPIO6	//PB6
 #define I2C_SDA		GPIO9	//PB9
@@ -54,18 +56,43 @@
 #define CS43L22_LRCK_PIN	GPIO4	//PA4
 
 
+/*Helps to fill selected registers with desired values*/
+typedef struct
+{
+	uint8_t reg;
+	uint8_t val;
+}reg_val_t;
+
+
+reg_val_t codec_init_arr[] =
+{
+		/* See CS43L22 datasheet page 31 */
+		{0x00, 0x99},
+		{0x47, 0x80},
+		{0x32, 0x80},
+		{0x32, 0x00},
+		{0x00, 0x00}
+};
+
+
+reg_val_t codec_i2s_audio[] =
+{
+		/*Configure I2S periph as slave 16Bits */
+		{CS43L22_IF_CTL_1, 0x03},
+		//{CS43L22_PWR_CTL_2, 0x80},
+		/*Speaker volume A = B and MONO */
+		{CS43L22_PLAYBACK_CTL_2, 0x0A},
+		/*Set volume for A and B*/
+		{CS43L22_MASTER_VOL_A, 0xC0},
+		/*Headphone and Speaker always ON*/
+		{CS43L22_PWR_CTL_2, 0xAA}
+};
 
 void codec_init(void);
-void codec_configure(void);
-void codec_generate_MCLK(void);
-uint8_t codec_read(void);
-void codec_write(void);
-void codec_set_volume(uint16_t vol);
-uint32_t codec_get_volume(void);
-void codec_decrease_volume(void);
-void codec_increase_volume(void);
-void codec_set_mute(void);
-
+void codec_decrease_volume(uint32_t step);
+void codec_increase_volume(uint32_t step);
+void codec_set_mute(bool_t state);
+void codec_read_chip_id(uint8_t *chip_id);
 void i2c_config(void);
 void i2s_config(void);
 

@@ -10,7 +10,7 @@
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
 
-
+#define ARR_SIZE(arr)	(sizeof(arr)/sizeof(arr[0]))
 
 typedef enum
 {
