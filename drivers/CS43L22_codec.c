@@ -29,9 +29,11 @@ void i2c_config(void)
 	gpio_set_af(GPIOB, GPIO_AF4, I2C_SDA);
 
 	i2c_set_dutycycle(I2C1, I2C_CCR_DUTY);
-	i2c_set_speed(I2C1, i2c_speed_sm_100k, 8); //Make better
 
-;	i2c_peripheral_enable(I2C1);
+	//i2c_set_clock_frequency(I2C1, );
+	i2c_set_speed(I2C1, i2c_speed_sm_100k, 8); //Set Clock to 8MHz
+
+	i2c_peripheral_enable(I2C1);
 }
 
 
@@ -46,28 +48,30 @@ static void timer3_init(void)
 {
 	const uint16_t arr_val = 7;
 	rcc_periph_clock_enable(RCC_TIM3);
-
-	timer_set_period(TIM2, arr_val - 1); // Generate timer overflow evet every 1s
+	timer_set_prescaler(TIM3, 0);
+	//timer_generate_event();
+	timer_set_period(TIM3, arr_val - 1); // Generate timer overflow evet every 1s
 	timer_set_prescaler(TIM2, 0); //Timer counter in incremented every 1ms
-	timer_set_mode(TIM3, TIM_CR1_CKD_CK_INT, TIM_CR1_CMS_CENTER_1, TIM_CR1_DIR_UP);
+	timer_set_mode(TIM3, TIM_CR1_CKD_CK_INT, TIM_CR1_CMS_EDGE, TIM_CR1_DIR_UP);
 	timer_set_oc_mode(TIM3, TIM_OC2, TIM_OCM_PWM2);
 
+	/*Set duty cycle*/
+	timer_set_oc_value(TIM3, TIM_OC2, 3); // ~50% duty cycle
 	/*Enable capture/compare*/
 	timer_enable_oc_output(TIM3, TIM_OC2);
-	/*Set duty cycle*/
-	timer_set_oc_value(TIM3, TIM_OC2, 200);
+
 	timer_enable_counter(TIM3);
 }
 
 static void codec_generate_MCLK(void)
 {
-	timer3_init();
 	rcc_periph_clock_enable(RCC_GPIOC);
 	gpio_mode_setup(GPIOC, GPIO_MODE_AF, GPIO_PUPD_NONE, I2S_MCLK);
 
 	gpio_set_output_options(GPIOC, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, I2S_MCLK);
 	//Setup PC7 as alternate function for TIM3_CH2. //
 	gpio_set_af(GPIOC, GPIO_AF2, I2S_MCLK);
+	timer3_init();
 }
 
 /*Read a value to the selected register*/
@@ -76,7 +80,7 @@ static uint8_t codec_read(uint8_t reg)
 	uint8_t buffer[2];
 	buffer[0] = reg;
 
-	i2c_transfer7(I2C1, CS43L22_CODEC_ID, buffer, 1, (buffer+1), 1);
+	i2c_transfer7(I2C1, CS43L22_CODEC_ADDR, buffer, 1, (buffer+1), 1);
 	return buffer[1];
 }
 
@@ -86,7 +90,7 @@ static void codec_write(uint8_t reg, uint8_t val)
 	uint8_t buffer[2];
 	buffer[0] = reg;
 	buffer[1] = val;
-	i2c_transfer7(I2C1, CS43L22_CODEC_ID, buffer, 2, NULL, 0);
+	i2c_transfer7(I2C1, CS43L22_CODEC_ADDR, buffer, 2, NULL, 0);
 }
 
 static void codec_set_volume(int32_t vol)
@@ -191,7 +195,6 @@ void codec_init(void)
 {
 	i2c_config();
 	codec_config();
-	timer3_init();
 	codec_generate_MCLK();
 
 	/*Power up the CODEC*/

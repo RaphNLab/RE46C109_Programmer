@@ -23,8 +23,9 @@ int main(void)
 	uint32_t timer_freq = 0;
 
 
-	timer_config();
-	dac_config();
+	//timer_config();
+	//dac_config();
+	codec_init();
 
 	while (1)
 	{

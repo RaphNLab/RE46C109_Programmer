@@ -3,7 +3,7 @@
 
 #include "global.h"
 
-#define CS43L22_CODEC_ID 			0x4AU
+#define CS43L22_CODEC_ADDR 			0x94 //0x4A
 
 #define CS43L22_CHIP_ID				0x01U
 #define CS43L22_PWR_CTL_1			0x02U
@@ -52,8 +52,8 @@
 #define I2S_MCLK	GPIO7	//PC7
 #define I2S_SCLK	GPIO10	//PC10
 #define I2S_SDIN	GPIO12	//PC12
+#define I2S_WS_PIN	GPIO4	//PA4
 #define CS43L22_RESET_PIN	GPIO4	//PD4
-#define CS43L22_LRCK_PIN	GPIO4	//PA4
 
 
 /*Helps to fill selected registers with desired values*/
