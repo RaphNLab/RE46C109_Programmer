@@ -1,4 +1,4 @@
-PROJECT = Audio_recorder
+PROJECT = RE46C109_Programmer
 BUILD_DIR = bin
 DRIVER_DIR = drivers
 

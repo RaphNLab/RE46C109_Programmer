@@ -2,7 +2,7 @@
 #define LED_DRIVER_H_
 
 #include "global.h"
-#include "delay_driver.h"
+#include "timer_drv.h"
 
 #define GREEN_LED	GPIO12
 #define ORANGE_LED	GPIO13

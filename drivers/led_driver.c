@@ -26,7 +26,7 @@ void led_ring(uint16_t delay, blink_dir_t direction)
 				for(uint8_t j = 0; j < 4; j++)
 				{
 					gpio_toggle(GPIOD, (led_num));
-					delay_ms(delay);
+					sleep_ms(delay);
 					led_num = (led_num * 2);
 				}
 			}
@@ -38,7 +38,7 @@ void led_ring(uint16_t delay, blink_dir_t direction)
 				for(uint8_t j = 0; j < 4; j++)
 				{
 					gpio_toggle(GPIOD, (led_num));
-					delay_ms(delay);
+					sleep_ms(delay);
 					led_num = (led_num / 2);
 				}
 			}
@@ -53,9 +53,6 @@ void led_ring(uint16_t delay, blink_dir_t direction)
 */
 void led_heart_beat(uint16_t delay)
 {
-	for(uint8_t i = 0; i < 8; i++)
-	{
-		gpio_toggle(GPIOD, (GREEN_LED | ORANGE_LED | RED_LED | BLUE_LED));
-		delay_ms(delay);
-	}
+	gpio_toggle(GPIOD, (GREEN_LED | ORANGE_LED | RED_LED | BLUE_LED));
+	sleep_ms(delay);
 }

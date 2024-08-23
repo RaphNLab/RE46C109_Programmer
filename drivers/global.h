@@ -6,9 +6,11 @@
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
+#include <math.h>
 #include <libopencm3/cm3/nvic.h>
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
+#include <libopencm3/stm32/timer.h>
 
 #define ARR_SIZE(arr)	(sizeof(arr)/sizeof(arr[0]))
 
