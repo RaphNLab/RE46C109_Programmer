@@ -14,6 +14,8 @@
 
 #define ARR_SIZE(arr)	(sizeof(arr)/sizeof(arr[0]))
 
+#define STM32L1_NUCLEO
+
 typedef enum
 {
 	FALSE = 0,

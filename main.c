@@ -9,7 +9,6 @@ int main(void)
 
 	re46c109_config();
 	led_config();
-
 	while (1)
 	{
 		send_data();

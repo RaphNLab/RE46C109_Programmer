@@ -13,11 +13,13 @@ void tim2_isr(void)
 
 void sleep_config(void)
 {
+	//rcc_clock_setup_pll(&rcc_clock_config[RCC_CLOCK_VRANGE1_HSI_RAW_4MHZ]);
+	rcc_clock_setup_pll(&rcc_clock_config[RCC_CLOCK_VRANGE1_HSI_PLL_24MHZ]);
 	rcc_periph_clock_enable(RCC_TIM2);
 	nvic_enable_irq(NVIC_TIM2_IRQ);
 
 	timer_set_period(TIM2, 5000); // Generate timer overflow evet every 2ms
-	timer_set_prescaler(TIM2, 16); // Counter increment every 1us
+	timer_set_prescaler(TIM2, 24); // Counter increment every 1us
 	timer_set_mode(TIM2, TIM_CR1_CKD_CK_INT, TIM_CR1_CMS_EDGE, TIM_CR1_DIR_UP);
 	timer_enable_irq(TIM2, TIM_DIER_UIE);
 	timer_enable_counter(TIM2);
@@ -27,16 +29,13 @@ void sleep_config(void)
 void timer3_init(void)
 {
 	rcc_periph_clock_enable(RCC_TIM3);
-	timer_set_prescaler(TIM3, 16);
-	timer_set_period(TIM3, 50);
+	timer_set_prescaler(TIM3, 24);
+	timer_set_period(TIM3, 120);
 	timer_set_mode(TIM3, TIM_CR1_CKD_CK_INT, TIM_CR1_CMS_EDGE, TIM_CR1_DIR_UP);
 	timer_set_oc_mode(TIM3, TIM_OC2, TIM_OCM_PWM2);
 
 	/*Set duty cycle*/
-	timer_set_oc_value(TIM3, TIM_OC2, 35); // ~25% duty cycle
-	/*Enable capture/compare*/
-	timer_enable_oc_output(TIM3, TIM_OC2);
-	timer_enable_counter(TIM3);
+	timer_set_oc_value(TIM3, TIM_OC2, 75); // ~25% duty cycle
 }
 
 void sleep_us(uint16_t delay_us)

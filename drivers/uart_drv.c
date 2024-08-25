@@ -54,7 +54,7 @@ void serial_xfer_config(void)
 	usart_enable(serial_com_dev.uart_port );
 }
 
-
+#ifdef STM32F4
 void serial_debug_config(void)
 {
 	uint8_t text_len = strlen((char*)serial_tx_buffer);
@@ -96,9 +96,10 @@ void serial_debug_config(void)
 	usart_enable(USART2);
 	//dma_enable_stream(DMA1, DMA_STREAM6);
 }
-
+#endif
 
 /* Print strings on serial port USART2*/
+#ifdef STM32F4
 void serial_put_s(char *data)
 {
 	/*while(*data != '\0'){
@@ -107,6 +108,7 @@ void serial_put_s(char *data)
 	}*/
 	dma_enable_stream(DMA1, DMA_STREAM6);
 }
+#endif
 
 
 status_t serial_send_pkt(serial_dev_t serial_dev, uint16_t size)
@@ -145,15 +147,15 @@ status_t serial_rcv_pkt(serial_dev_t serial_dev, uint16_t size)
 	return err;
 }
 
-void dma1_stream6_isr(void)
+/*void dma1_stream6_isr(void)
 {
 	if(dma_get_interrupt_flag(DMA1, DMA_STREAM6, DMA_TCIF))
 	{
-		/*Clear flag and Disable DMA*/
+		//Clear flag and Disable DMA
 		dma_clear_interrupt_flags(DMA1, DMA_STREAM6, DMA_TCIF);
 		dma_disable_stream(DMA1, DMA_STREAM6);
 	}
-}
+}*/
 
 
 void usart1_isr(void)

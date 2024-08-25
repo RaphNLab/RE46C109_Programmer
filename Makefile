@@ -6,7 +6,7 @@ CFILES = main.c
 CFILES += $(wildcard $(DRIVER_DIR)/*.c)
 
 # TODO - you will need to edit these two lines!
-DEVICE = stm32f411vet6
+DEVICE = stm32l152re#stm32f411vet6
 # OOCD_FILE = board/stm32f4discovery.cfg
 
 LDSCRIPT = ./stm32-clicker.ld

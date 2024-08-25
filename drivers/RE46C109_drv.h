@@ -5,9 +5,9 @@
 
 
 #define TEST2_PIN GPIO1 // PA1
-#define TEST_PIN GPIO2 	// PA2
+#define TEST_PIN GPIO3 	// PB3
 #define FEED_PIN GPIO7 	// PC7
-#define IO_PIN GPIO3 	// PA3
+#define IO_PIN GPIO4 	// PB5
 
 #define RE46C109_REG_SIZE 38U
 
