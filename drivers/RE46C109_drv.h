@@ -28,7 +28,17 @@ struct __attribute__((__packed__)) re46c109_reg
 	uint8_t ltd:5;
 };
 
+typedef enum
+{
+	START = 0,
+	SET_TEST,
+	SET_FEED,
+	RESET_FEED,
+	RESET_TEST
+}state_t;
 
+extern state_t next_state;
+extern uint8_t isr_flag;
 
 void re46c109_config(void);
 void send_data(void);
