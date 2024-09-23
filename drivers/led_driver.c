@@ -1,6 +1,25 @@
 #include "led_driver.h"
 
 
+/**
+ * Data type, Constant and macro definitions
+ *
+*/
+
+/**
+ * Static data declaration
+ *
+*/
+
+/**
+ * Private function prototypes
+ *
+*/
+
+/**
+ * Public functions
+ *
+*/
 void led_config(void)
 {
 	rcc_periph_clock_enable(RCC_GPIOD);
@@ -56,3 +75,10 @@ void led_heart_beat(uint16_t delay)
 	gpio_toggle(GPIOD, (GREEN_LED | ORANGE_LED | RED_LED | BLUE_LED));
 	sleep_ms(delay);
 }
+
+
+/**
+ * Private functions
+ *
+*/
+

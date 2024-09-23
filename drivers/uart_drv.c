@@ -3,6 +3,16 @@
 #include <libopencm3/stm32/usart.h>
 #include <libopencm3/stm32/dma.h>
 
+
+/**
+ * Data type, Constant and macro definitions
+ *
+*/
+
+/**
+ * Static data declaration
+ *
+*/
 serial_dev_t serial_debug_dev;
 serial_dev_t serial_com_dev;
 
@@ -10,22 +20,52 @@ uint8_t serial_rx_buffer[SERIAL_BUF_SIZE];
 uint8_t serial_tx_buffer[] = "Keep Working on your dreams\r\n";
 
 
-int _write(int file, char *ptr, int len)
-{
-	int i;
+/**
+ * Private function prototypes
+ *
+*/
 
-	if (file == STDOUT_FILENO || file == STDERR_FILENO) {
-		for (i = 0; i < len; i++) {
-			if (ptr[i] == '\n') {
-				usart_send_blocking(USART2, '\r');
-			}
-			usart_send_blocking(USART2, ptr[i]);
-		}
-		return i;
+/**
+ * Public functions
+ *
+*/
+status_t serial_rcv_pkt(serial_dev_t serial_dev, uint16_t size)
+{
+	status_t err = GLOBAL_ERROR;
+
+	if(size > SERIAL_MAX_SATA_SIZE)
+	{
+		// Report size too big
 	}
-	errno = EIO;
-	return -1;
+	else
+	{
+		if(serial_dev.serial_receive_done)
+		{
+			err = GLOBAL_OK;
+		}
+	}
+	return err;
 }
+
+
+status_t serial_send_pkt(serial_dev_t serial_dev, uint16_t size)
+{
+	status_t err = GLOBAL_ERROR;
+	if(size > SERIAL_MAX_SATA_SIZE)
+	{
+		// Report size too big
+	}
+	else
+	{
+		if(serial_dev.serial_send_done)
+		{
+			err = GLOBAL_OK;
+		}
+	}
+
+	return err;
+}
+
 
 void serial_xfer_config(void)
 {
@@ -111,53 +151,11 @@ void serial_put_s(char *data)
 #endif
 
 
-status_t serial_send_pkt(serial_dev_t serial_dev, uint16_t size)
-{
-	status_t err = GLOBAL_ERROR;
-	if(size > SERIAL_MAX_SATA_SIZE)
-	{
-		// Report size too big
-	}
-	else
-	{
-		if(serial_dev.serial_send_done)
-		{
-			err = GLOBAL_OK;
-		}
-	}
 
-	return err;
-}
-
-status_t serial_rcv_pkt(serial_dev_t serial_dev, uint16_t size)
-{
-	status_t err = GLOBAL_ERROR;
-
-	if(size > SERIAL_MAX_SATA_SIZE)
-	{
-		// Report size too big
-	}
-	else
-	{
-		if(serial_dev.serial_receive_done)
-		{
-			err = GLOBAL_OK;
-		}
-	}
-	return err;
-}
-
-/*void dma1_stream6_isr(void)
-{
-	if(dma_get_interrupt_flag(DMA1, DMA_STREAM6, DMA_TCIF))
-	{
-		//Clear flag and Disable DMA
-		dma_clear_interrupt_flags(DMA1, DMA_STREAM6, DMA_TCIF);
-		dma_disable_stream(DMA1, DMA_STREAM6);
-	}
-}*/
-
-
+/**
+ * Private functions
+ *
+*/
 void usart1_isr(void)
 {
 	/*	Handle data reception	*/
@@ -172,4 +170,34 @@ void usart1_isr(void)
 
 	}
 }
+
+
+/*void dma1_stream6_isr(void)
+{
+	if(dma_get_interrupt_flag(DMA1, DMA_STREAM6, DMA_TCIF))
+	{
+		//Clear flag and Disable DMA
+		dma_clear_interrupt_flags(DMA1, DMA_STREAM6, DMA_TCIF);
+		dma_disable_stream(DMA1, DMA_STREAM6);
+	}
+}*/
+
+int _write(int file, char *ptr, int len)
+{
+	int i;
+
+	if (file == STDOUT_FILENO || file == STDERR_FILENO) {
+		for (i = 0; i < len; i++) {
+			if (ptr[i] == '\n') {
+				usart_send_blocking(USART2, '\r');
+			}
+			usart_send_blocking(USART2, ptr[i]);
+		}
+		return i;
+	}
+	errno = EIO;
+	return -1;
+}
+
+
 
