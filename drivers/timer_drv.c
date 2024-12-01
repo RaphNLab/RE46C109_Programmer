@@ -14,7 +14,7 @@ void sleep_config(void)
 	timer_enable_counter(TIM2);
 }
 
-/*Configure timer 3 to generate PWM*/
+/*Configure timer 3 to generate overflow every 40uS*/
 void timer3_init(void)
 {
 	rcc_periph_clock_enable(RCC_TIM3);

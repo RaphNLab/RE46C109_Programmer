@@ -11,9 +11,7 @@ int main(void)
 	led_config();
 	while (1)
 	{
-		send_data();
-		//led_heart_beat(100);
-		//led_ring(100, LED_RIGTH);
+		re46c109_setPrameter(config_reg);
 	}
 	return 0;
 }
