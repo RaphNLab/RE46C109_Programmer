@@ -1,3 +1,4 @@
+
 #include "drivers/RE46C109_drv.h"
 #include "drivers/timer_drv.h"
 #include "drivers/uart_drv.h"
@@ -13,5 +14,5 @@ int main(void)
 	{
 		re46c109_setPrameter(config_reg);
 	}
-	return 0;
+	return (0);
 }

@@ -31,7 +31,6 @@ void led_ring(uint16_t delay, blink_dir_t direction)
 				}
 			}
 			break;
-			//case LED_RIGTH:
 			default:
 			{
 				led_num = BLUE_LED;

@@ -1,3 +1,12 @@
+/* Copyright (C) 1883 Thomas Edison - All Rights Reserved
+ * You may use, distribute and modify this code under the
+ * terms of the XYZ license, which unfortunately won't be
+ * written for another century.
+ *
+ * You should have received a copy of the XYZ license with
+ * this file. If not, please write to: , or visit :
+ */
+
 #include "RE46C109_drv.h"
 #include "timer_drv.h"
 
@@ -63,7 +72,7 @@ void re46c109_setPrameter(struct re46c109_reg_t configReg)
 		switch(next_state)
 		{
 		case START:
-			// Do nothing
+			/* Do nothing*/
 			gpio_clear(GPIOB, TEST_PIN);
 			gpio_clear(GPIOC, FEED_PIN);
 			next_state = SET_TEST;
@@ -100,7 +109,7 @@ void re46c109_setPrameter(struct re46c109_reg_t configReg)
 		prameterIsrFlag = FALSE;
 	}
 
-	// Register content completely transmitted
+	/*Register content completely transmitted*/
 	if((mask == 0) && prameterIsrFlag)
 	{
 		gpio_set(GPIOB, IO_PIN);
@@ -161,7 +170,7 @@ static bool_t re46c109_FEEDAdjust(calibration_mode_t mode)
 			}
 		}
 	}
-	return retVal;
+	return (retVal);
 }
 
 void re46c109_smokeCalibrate(void)
@@ -174,7 +183,7 @@ void re46c109_smokeCalibrate(void)
 
 	/* Set TEST2_PIN to Vdd till the end of the calibration*/
 	gpio_set(GPIOA, TEST2_PIN);
-	// Setup time
+	/* Setup time*/
 	sleep_ms(5);
 
 	while(calibrationMode != CAL_MODE_END)
@@ -215,10 +224,10 @@ void re46c109_smokeCalibrate(void)
 			calibrationMode = CAL_MODE_END;
 			break;
 		case CAL_MODE_END:
-				// Do nothing
+				/* Do nothing */
 				break;
 		default:
-			// Error Handling
+			/* Error Handling */
 			gpio_clear(GPIOB, (IO_PIN | TEST_PIN));
 			gpio_clear(GPIOA, TEST2_PIN);
 			gpio_clear(GPIOC, FEED_PIN);
@@ -231,7 +240,7 @@ bool_t re46c109_verify(void)
 {
 	bool_t retVal = FALSE;
 
-	return retVal;
+	return (retVal);
 }
 
 

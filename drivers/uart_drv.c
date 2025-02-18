@@ -21,10 +21,10 @@ int _write(int file, char *ptr, int len)
 			}
 			usart_send_blocking(USART2, ptr[i]);
 		}
-		return i;
+		return (i);
 	}
 	errno = EIO;
-	return -1;
+	return (-1);
 }
 
 void serial_xfer_config(void)
@@ -94,7 +94,7 @@ void serial_debug_config(void)
 
 	usart_enable_tx_dma(USART2);
 	usart_enable(USART2);
-	//dma_enable_stream(DMA1, DMA_STREAM6);
+	/*dma_enable_stream(DMA1, DMA_STREAM6); */
 }
 #endif
 
@@ -116,7 +116,7 @@ status_t serial_send_pkt(serial_dev_t serial_dev, uint16_t size)
 	status_t err = GLOBAL_ERROR;
 	if(size > SERIAL_MAX_SATA_SIZE)
 	{
-		// Report size too big
+		/* Report size too big */
 	}
 	else
 	{
@@ -126,7 +126,7 @@ status_t serial_send_pkt(serial_dev_t serial_dev, uint16_t size)
 		}
 	}
 
-	return err;
+	return (err);
 }
 
 status_t serial_rcv_pkt(serial_dev_t serial_dev, uint16_t size)
@@ -135,7 +135,7 @@ status_t serial_rcv_pkt(serial_dev_t serial_dev, uint16_t size)
 
 	if(size > SERIAL_MAX_SATA_SIZE)
 	{
-		// Report size too big
+		/* Report size too big */
 	}
 	else
 	{
@@ -144,7 +144,7 @@ status_t serial_rcv_pkt(serial_dev_t serial_dev, uint16_t size)
 			err = GLOBAL_OK;
 		}
 	}
-	return err;
+	return (err);
 }
 
 /*void dma1_stream6_isr(void)
