@@ -11,17 +11,30 @@
 
 #include "systick.h"
 
+
+/**
+ * Data type, Constant and macro definitions
+ *
+*/
+
+/**
+ * Static data declaration
+ *
+*/
 /* monotonically increasing number of milliseconds from reset
  * overflows every 49 days if you're wondering
  */
 volatile uint32_t system_millis;
 
-/* Called when systick fires */
-void sys_tick_handler(void)
-{
-	system_millis++;
-}
+/**
+ * Private function prototypes
+ *
+*/
 
+/**
+ * Public functions
+ *
+*/
 /* sleep for delay milliseconds */
 void msleep(uint32_t delay)
 {
@@ -45,3 +58,15 @@ void systick_ms_setup(void)
 	systick_interrupt_enable();
 }
 
+
+/**
+ * Private functions
+ *
+*/
+
+
+/* Called when systick fires */
+void sys_tick_handler(void)
+{
+	system_millis++;
+}

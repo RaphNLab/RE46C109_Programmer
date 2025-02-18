@@ -4,8 +4,8 @@
 #include "global.h"
 
 
-void sleep_config(void);
-void timer3_init(void);
+void timer_sleep_config(void);
+void timer_debounce_config(void);
 void sleep_us(uint16_t delay_us);
 void sleep_ms(uint16_t delay_ms);
 
