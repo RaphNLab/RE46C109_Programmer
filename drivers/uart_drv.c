@@ -30,7 +30,6 @@ char *uartCmdList[] =
 };
 
 
-
 /**
  * Static data declaration
  *
@@ -40,26 +39,30 @@ char *uartCmdList[] =
  * Private function prototypes
  *
 */
-void uartGpioSetup(void);
-void serial_debug_setup(void);
+static void uartGpioSetup(void);
+static void serial_debug_setup(void);
+
 
 
 
 /**
- * Private functions
- *
-*/
-
-
-
-void uartGpioSetup(void)
+ * @brief Enable and configure GPIO pins used as alternate function for RX and TX pin
+ * @param None
+ * */
+static void uartGpioSetup(void)
 {
 	rcc_periph_clock_enable(RCC_GPIOA);
 	gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, (GPIO2 | GPIO3));
 	gpio_set_af(GPIOA, GPIO_AF7, (GPIO2 | GPIO3));
 }
 
-void serial_debug_setup(void)
+
+/**
+ * @brief Configure the serial console by setting the baudrate, databits, RX/TX mode
+ * 		  Enable interupt and activate the USART device
+ * @param None
+ * */
+static void serial_debug_setup(void)
 {
 	rcc_periph_clock_enable(RCC_USART2);
 
@@ -80,7 +83,12 @@ void serial_debug_setup(void)
 
 
 /**
- * This function configures the UART device as well as its transmit and receive buffers
+ * @brief This function configures the UART device as well as its transmit and receive buffers
+ * @param uartDev uartDev UartDev_T* pointer to USART device
+ * @param uartBase uint32_t USART base address
+ * @param rxBuffer uint8_t* pointer to the receive buffer
+ * @param txBuffer uint8_t* pointer to the transmit buffer
+ * @param size uint8_t data size
  */
 
 void uartDevConfig(UartDev_T *uartDev, uint32_t uartBase, uint8_t *rxBuffer, uint8_t *txBuffer, uint8_t size)
@@ -111,7 +119,10 @@ void uartDevConfig(UartDev_T *uartDev, uint32_t uartBase, uint8_t *rxBuffer, uin
 }
 
 
-
+/**
+ * @brief Task to handle every incomming commands from the console
+ * @param uartDev UartDev_T* pointer to uart device
+ * */
 void UartHandleCmd_Task(UartDev_T *uartDev)
 {
 	if(uartDev->uartRxFlag == UART_RX_CMP)
@@ -193,6 +204,10 @@ void UartHandleCmd_Task(UartDev_T *uartDev)
 }
 
 
+/**
+ * @brief USART2 interrupt service routine handling every incoming byte from the console
+ * 	      Once a command is fully received a flag is set to notify.
+ * */
 void usart2_isr(void)
 {
 	volatile uint8_t rcv_char = '\0';
