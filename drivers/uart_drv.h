@@ -35,6 +35,7 @@ typedef enum
 	AT_RUN_T9,
 	AT_RUN_T10,
 	AT_RUN_T11,
+	AT_SMOKE_CALIBRATE,
 	AT_INVALID
 }UartAtCmd_t;
 

@@ -14,7 +14,6 @@ int main(void)
 
 	uartDevConfig(&myUartDev, MY_USART_DEVICE, uartRxBuffer, uartTxBuffer, USART_DATA_LEN);
 
-	printf("Program Starts\n");
 
 	while (1)
 	{

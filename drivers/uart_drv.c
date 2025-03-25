@@ -16,7 +16,7 @@ uint8_t isrCnt = 0;
 char *uartCmdList[] =
 {
 	"AT+RUN_T0",  /* Run T0 for calibration */
-	"AT+RUN_T1",  /* Run T1 To set Norm Limit */
+	"AT+RUN_T1",  /* Run T1 To set Normal Limit */
 	"AT+RUN_T2",  /* Run T2 to set Hysteresis */
 	"AT+RUN_T3",  /* Run T3 to set hush limitation */
 	"AT+RUN_T4",  /* Run T4 to set ch test limitation*/
@@ -26,7 +26,8 @@ char *uartCmdList[] =
 	"AT+RUN_T8",  /* Run T8 to perform Hysteresis limitation check */
 	"AT+RUN_T9",  /* Run T9 to perform Hush limitation check*/
 	"AT+RUN_T10", /* Run T10 to perform Ch Test limitation check */
-	"AT+RUN_T11"  /* Run T11 to perform Horn test */
+	"AT+RUN_T11", /* Run T11 to perform Horn test */
+	"AT+SMOKE_CALIBRATE" /* Run mode T1 to T5*/
 };
 
 
