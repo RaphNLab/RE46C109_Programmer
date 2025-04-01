@@ -6,6 +6,7 @@
 #include "drivers/timer_drv.h"
 #include "drivers/uart_drv.h"
 #include "drivers/led_driver.h"
+<<<<<<< HEAD
 #include "drivers/button.h"
 
 int main(void)
@@ -19,6 +20,24 @@ int main(void)
 	while (1)
 	{
 <<<<<<< HEAD
+=======
+#include "drivers/uart_drv.h"
+
+
+int main(void)
+{
+	sleep_config();
+	re46c109_config();
+	led_config();
+
+	uartDevConfig(&myUartDev, MY_USART_DEVICE, uartRxBuffer, uartTxBuffer, USART_DATA_LEN);
+
+
+	while (1)
+	{
+		UartHandleCmd_Task(&myUartDev);
+
+>>>>>>> develop
 		re46c109_setPrameter(config_reg);
 =======
 		if(button_debounce(GREEN_BUTTON))

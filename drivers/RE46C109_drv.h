@@ -4,36 +4,30 @@
 #include "global.h"
 
 
-/*
- * Entering programming Mode
- * After power up:
- * - Set TEST2 to Vdd
-*/
-
-
 #define TEST2_PIN GPIO1 /* PA1 */
 #define TEST_PIN GPIO3 	/* PB3 */
 #define FEED_PIN GPIO7 	/* PC7 */
 #define IO_PIN GPIO4 	/* PB4 */
 #define HB_PIN GPIO2	/* PA2 */
 
-#define RE46C109_REG_SIZE 38U
+#define RE46C109_REG_SIZE 39U
 
 struct __attribute__((packed, aligned(sizeof(uint64_t)))) re46c109_reg_t
 {
-	uint16_t ts:1;
-	uint16_t eol:1;
-	uint16_t lbh:1;
-	uint16_t hush:1;
-	uint16_t lb:3;
-	uint16_t irc:2;
-	uint16_t it:2;
-	uint16_t pagf:2;
-	uint16_t nl:5;
-	uint16_t hyl:5;
-	uint16_t hul:5;
-	uint16_t ctl:5;
-	uint16_t ltd:5;
+	uint16_t ts:1;   /*Tone set bit*/
+	uint16_t eol:1;  /*End of Life Enable bit*/
+	uint16_t lbh:1;  /*Low Battery Hush Enable bit*/
+	uint16_t hush:1; /* Hush Option bit*/
+	uint16_t ltde:1; /*Log-Term Drift Enable bit*/
+	uint16_t lb:3;   /*Low Battery Trip Point bits*/
+	uint16_t irc:2;  /*IRED Current bits*/
+	uint16_t it:2;   /*Integration Time bits*/
+	uint16_t pagf:2; /*Photo Amplifier Gain Factor bits*/
+	uint16_t nl:5;   /*Normal Limits bits*/
+	uint16_t hyl:5;  /*Hysteresis Limit bits*/
+	uint16_t hul:5;  /*Hush limit bits*/
+	uint16_t ctl:5;  /*Chamber Test Limits bits*/
+	uint16_t ltd:5;  /*Long Term Drift Sample bits*/
 };
 
 typedef enum
@@ -46,6 +40,7 @@ typedef enum
 	CAL_MODE_END
 }calibration_mode_t;
 
+
 typedef enum
 {
 	VERIF_T7_MODE = 7,
@@ -54,6 +49,7 @@ typedef enum
 	VERIFT_10_MODE,
 	VERIF_T11_MODE,
 }verification_mode_t;
+
 
 typedef enum
 {
@@ -77,12 +73,12 @@ extern struct re46c109_reg_t config_reg;
 extern state_t next_state;
 extern uint8_t isr_flag;
 
+
 void re46c109_config(void);
 void re46c109_send_data(void);
 
-void re46c109_setPrameter(struct re46c109_reg_t configReg);
+void re46c109_runModeT0(struct re46c109_reg_t configReg);
 void re46c109_smokeCalibrate(void);
 bool_t re46c109_verify(void);
-
 
 #endif

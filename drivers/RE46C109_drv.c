@@ -10,6 +10,18 @@
 #include "RE46C109_drv.h"
 #include "timer_drv.h"
 
+
+/**
+ * Private function definition
+ **/
+static void re46c109_testConfig(void);
+static void re46c109_feedConfig(void);
+static void re46c109_TESTClock(uint8_t clockAmount);
+
+/**
+ * Global variable declaration / definition
+ * */
+
 state_t next_state = START;
 calibration_mode_t calibrationMode = CAL_T1_MODE;
 verification_mode_t verificationMode = VERIF_T7_MODE;
@@ -17,12 +29,17 @@ bool_t prameterIsrFlag = FALSE;
 bool_t smokeCalibrationIsrFalg = FALSE;
 sequence_t next_sequence = PARAMETRIC_SELECTION;
 
+
+/**
+ * @brief Initialize configuration register
+ * */
 struct re46c109_reg_t config_reg =
 {
 	.ts = 0b1,
 	.eol = 0b0,
 	.lbh = 0b0,
 	.hush = 0b0,
+	.ltde = 0b0,
 	.lb = 0b010,
 	.irc = 0b00,
 	.it = 0b11,
@@ -35,6 +52,11 @@ struct re46c109_reg_t config_reg =
 };
 
 
+/**
+ * @brief Configure FEED, TEST2, IO and HB pins
+ * @param NOne
+ * @returns None
+ * */
 static void re46c109_testConfig(void)
 {
 	rcc_periph_clock_enable(RCC_GPIOA);
@@ -45,6 +67,11 @@ static void re46c109_testConfig(void)
 	gpio_mode_setup(GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, (TEST_PIN | IO_PIN));
 }
 
+/**
+ * @brief Configure FEED pin
+ * @param NOne
+ * @returns None
+ * */
 static void re46c109_feedConfig(void)
 {
 	rcc_periph_clock_enable(RCC_GPIOC);
@@ -52,6 +79,11 @@ static void re46c109_feedConfig(void)
 }
 
 
+/**
+ * @brief Configure the timer, TEST, TEST2, IO, HB, and FEED pins
+ * @param None
+ * @returns None
+ * */
 void re46c109_config(void)
 {
 	timer3_init();
@@ -59,7 +91,13 @@ void re46c109_config(void)
 	re46c109_feedConfig();
 }
 
-void re46c109_setPrameter(struct re46c109_reg_t configReg)
+
+/**
+ * @brief Configure the RE46C190 by setting calibration parameters
+ * @param configReg struct re46c109_reg_t configuration register for parameter to set
+ * @returns None
+ */
+void re46c109_runModeT0(struct re46c109_reg_t configReg)
 {
 	uint16_t i;
 	static volatile uint64_t mask = (uint64_t)pow((double)2, (double)RE46C109_REG_SIZE);
@@ -124,13 +162,24 @@ void re46c109_setPrameter(struct re46c109_reg_t configReg)
 }
 
 
-static void re46c109_TESTClock(void)
+/**
+ * @brief Set and reset TEST pin to jump into a specific calibration mode
+ * @param clockAmount uint8_t how many time the clock shall be set. Corresponds
+ * to the calibration mode to apply
+ * @returns none
+**/
+static void re46c109_TESTClock(uint8_t clockAmount)
 {
-	gpio_set(GPIOB, TEST_PIN);
-	sleep_us(150);
-	gpio_clear(GPIOB, TEST_PIN);
-	sleep_us(50);
+	uint8_t i;
+	for(i = 0; i < clockAmount; i++)
+	{
+		gpio_set(GPIOB, TEST_PIN);
+		sleep_us(150);
+		gpio_clear(GPIOB, TEST_PIN);
+		sleep_us(50);
+	}
 }
+
 
 static bool_t re46c109_FEEDAdjust(calibration_mode_t mode)
 {
@@ -191,40 +240,41 @@ void re46c109_smokeCalibrate(void)
 		switch(calibrationMode)
 		{
 		case CAL_T1_MODE:
-			re46c109_TESTClock();
+			re46c109_TESTClock(CAL_T1_MODE);
 			if(re46c109_FEEDAdjust(calibrationMode))
 			{
 				calibrationMode = CAL_T2_MODE;
 			}
 			break;
 		case CAL_T2_MODE:
-			re46c109_TESTClock();
+			re46c109_TESTClock(CAL_T2_MODE);
 			if(re46c109_FEEDAdjust(calibrationMode))
 			{
 				calibrationMode = CAL_T4_MODE;
 			}
 			break;
 		case CAL_T3_MODE:
-			re46c109_TESTClock();
+			re46c109_TESTClock(CAL_T3_MODE);
 			if(re46c109_FEEDAdjust(calibrationMode))
 			{
 				calibrationMode = CAL_T4_MODE;
 			}
 			break;
 		case CAL_T4_MODE:
-			re46c109_TESTClock();
+			re46c109_TESTClock(CAL_T4_MODE);
 			if(re46c109_FEEDAdjust(calibrationMode))
 			{
 				calibrationMode = CAL_T5_MODE;
 			}
 			break;
 		case CAL_T5_MODE:
-			re46c109_TESTClock();
+			re46c109_TESTClock(CAL_T5_MODE);
 
 			calibrationMode = CAL_MODE_END;
 			break;
 		case CAL_MODE_END:
 				/* Do nothing */
+				/* The Loop shall break */
 				break;
 		default:
 			/* Error Handling */
