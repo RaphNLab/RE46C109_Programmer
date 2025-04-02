@@ -19,7 +19,7 @@ int main(void)
 	{
 		UartHandleCmd_Task(&myUartDev);
 
-		re46c109_setPrameter(config_reg);
+		re46c109_runModeT0(config_reg);
 	}
 	return (0);
 }
