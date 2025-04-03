@@ -13,6 +13,7 @@ void sleep_config(void)
 	timer_enable_counter(TIM2);
 }
 
+
 /*Configure timer 3 to generate overflow every 40uS*/
 void timer3_init(void)
 {
