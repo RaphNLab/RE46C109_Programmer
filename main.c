@@ -18,9 +18,6 @@ int main(void)
 	while (1)
 	{
 		UartHandleCmd_Task(&myUartDev);
-		//re46c109_runModeT0(config_reg);
-		
-		//re46c109_runModeT6(config_reg);
 	}
 	return (0);
 }

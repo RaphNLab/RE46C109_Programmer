@@ -27,7 +27,8 @@ char *uartCmdList[] =
 	"RUN_T9",  /* Run T9 to perform Hush limitation check*/
 	"RUN_T10", /* Run T10 to perform Ch Test limitation check */
 	"RUN_T11", /* Run T11 to perform Horn test */
-	"SMOKE_CALIBRATE" /* Run mode T1 to T5*/
+	"SMOKE_CALIBRATE", /* Run mode T1 to T5*/
+	"HELP"
 };
 
 
@@ -178,27 +179,37 @@ void UartHandleCmd_Task(UartDev_T *uartDev)
 		else if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T7])) == 0)
 		{
 			printf("Norm Limitation check Start\n");
+			re46c109_runTest(VERIF_T7_MODE);
 		}
 		else if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T8])) == 0)
 		{
 			printf("Hysteresis Limitation check Start\n");
+			re46c109_runTest(VERIF_T8_MODE);
 		}
 		else if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T9])) == 0)
 		{
 			printf("Hush Limitation check Start\n");
+			re46c109_runTest(VERIF_T9_MODE);
 		}
-		else if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T11])) == 0)
+		else if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T10])) == 0)
 		{
 			printf("Ch Test limitation check Start\n");
+			re46c109_runTest(VERIF_T10_MODE);
 		}
 		else if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T11])) == 0)
 		{
 			printf("Horn test start\n");
+			re46c109_testHorn();
+		}
+		else if((strcasecmp(args[0], (const char*)uartCmdList[HELP])) == 0)
+		{
+			printMenu();
 		}
 		else
 		{
 			/* Report invalid command*/
 			printf("Invalid CMD %s\n", uartDev->uartRxBuffer);
+			printMenu();
 		}
 		/* Reset the flag*/
 		uartDev->uartRxFlag = UART_NO_RX;
@@ -252,6 +263,26 @@ int _write(int file, char *ptr, int len)
 	}
 	errno = EIO;
 	return (-1);
+}
+
+
+void printMenu(void)
+{
+    printf(
+		  "############################################################\t\n"
+          "*\tWelcome to the RE46C109 smoke sensor programmer*   *\t\n"
+          "*\t- Type *HELP* to print this menu                   *\t\n"
+          "############################################################\t\n"
+          "\n"
+          "*\t- RUN_T0  to run T0 calibration mode               *\t\n"
+          "*\t- RUN_T6  to run T6 read/write mode                *\t\n"
+          "*\t- RUN_T7  to run Normal Limits test mode           *\t\n"
+          "*\t- RUN_T8  to run Hysteresis Limits test mode       *\t\n"
+          "*\t- RUN_T9  to run Hush Limits test mode             *\t\n"
+          "*\t- RUN_T10  to run Chamber Test Limits test mode    *\t\n"
+          "*\t- RUN_T11  to run horn Test                        *\t\n"
+          "\n############################################################\t\n"
+    );
 }
 
 

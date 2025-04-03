@@ -47,7 +47,7 @@ typedef enum
 	VERIF_T7_MODE = 7,
 	VERIF_T8_MODE,
 	VERIF_T9_MODE,
-	VERIFT_10_MODE,
+	VERIF_T10_MODE,
 	VERIF_T11_MODE,
 }verification_mode_t;
 
@@ -80,6 +80,8 @@ void re46c109_smokeCalibrate(void);
 
 void re46c109_runModeT0(struct re46c109_reg_t dataT0);
 void re46c109_runModeT6(struct re46c109_reg_t dataT6);
-bool_t re46c109_verify(void);
+void re46c109_runTest(verification_mode_t mode);
+void re46c109_testHorn(void);
+
 
 #endif

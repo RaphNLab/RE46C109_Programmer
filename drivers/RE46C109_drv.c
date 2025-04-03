@@ -18,8 +18,7 @@
 static void re46c109_testConfig(void);
 static void re46c109_feedConfig(void);
 static void re46c109_TESTClock(uint8_t clockAmount);
-static void re46c109_sendDataT0(struct re46c109_reg_t configReg);
-static void re46c109_sendDataT6(struct re46c109_reg_t configReg);
+static void re46c109_sendData(struct re46c109_reg_t configReg);
 static void re46c109_initIo(void);
 
 /**
@@ -49,7 +48,7 @@ struct re46c109_reg_t config_reg =
 	.it = 0b11,
 	.pagf = 0b00,
 	.nl = 0b00000,
-	.hyl = 0b01100,
+	.hyl = 0b00000,
 	.hul = 0b00000,
 	.ctl = 0b00000,
 	.ltd = 0b00110
@@ -121,15 +120,18 @@ static void re46c109_initIo(void)
  * @param configReg struct re46c109_reg_t configuration register for parameter to set
  * @returns None
  */
-static void re46c109_sendDataT0(struct re46c109_reg_t configReg)
+static void re46c109_sendData(struct re46c109_reg_t configReg)
 {
 	volatile uint16_t i;
 	bool_t bitSent = FALSE;
 	static volatile uint64_t mask = (uint64_t)pow((double)2, (double)RE46C109_REG_SIZE);
 	uint64_t *data;
-
 	data = (uint64_t *)&configReg;
+	
 	gpio_set(GPIOA, TEST2_PIN);
+	/* 5s setup time */
+	sleep_us(5);
+	
 	for(i = 0; i <= RE46C109_REG_SIZE; i++)
 	{
 		bitSent = FALSE;
@@ -198,70 +200,6 @@ static void re46c109_sendDataT0(struct re46c109_reg_t configReg)
 }
 
 
-static void re46c109_sendDataT6(struct re46c109_reg_t configReg)
-{
-	uint16_t i;
-	static volatile uint64_t mask = (uint64_t)pow((double)2, (double)RE46C109_REG_SIZE);
-	uint64_t *data;
-
-	data = (uint64_t *)&configReg;
-	gpio_set(GPIOA, TEST2_PIN);
-	for(i = 0; i <= RE46C109_REG_SIZE && parameterIsrFlag; i++)
-	{
-		switch(next_state)
-		{
-		case START:
-			/* Do nothing*/
-			gpio_clear(GPIOB, TEST_PIN);
-			gpio_clear(GPIOC, FEED_PIN);
-			next_state = SET_TEST;
-			break;
-		case SET_TEST:
-			if((*data) & mask)
-			{
-				gpio_set(GPIOB, TEST_PIN);
-			}
-			else
-			{
-				gpio_clear(GPIOB, TEST_PIN);
-			}
-			mask >>= 1;
-			next_state = SET_FEED;
-			break;
-		case SET_FEED:
-			gpio_set(GPIOC, FEED_PIN);
-			next_state = RESET_FEED;
-			break;
-		case RESET_FEED:
-			gpio_clear(GPIOC, FEED_PIN);
-			next_state = RESET_TEST;
-			break;
-		case RESET_TEST:
-			gpio_clear(GPIOB, TEST_PIN);
-			next_state = START;
-			break;
-		default:
-			gpio_clear(GPIOB, TEST_PIN);
-			gpio_clear(GPIOC, FEED_PIN);
-			break;
-		}
-		parameterIsrFlag = FALSE;
-	}
-
-	/*Register content completely transmitted*/
-	if((mask == 0) && parameterIsrFlag)
-	{
-		gpio_set(GPIOB, IO_PIN);
-		sleep_ms(20);
-		gpio_clear(GPIOB, IO_PIN);
-		gpio_clear(GPIOA, TEST2_PIN);
-		sleep_ms(5);
-		mask = (uint64_t)pow((double)2, (double)RE46C109_REG_SIZE);
-		i = 0;
-		parameterIsrFlag = FALSE;
-	}
-}
-
 
 /**
  * @brief Set and reset TEST pin to jump into a specific calibration mode
@@ -282,6 +220,13 @@ static void re46c109_TESTClock(uint8_t clockAmount)
 }
 
 
+
+/**
+ * @brief Adjust the FEED oin depending on the mode 
+ * @param mode calibration_mode_t mode to adjust
+ * @returns bool_t
+ * TODO: Test this and write it better if necessary 
+ */
 static bool_t re46c109_FEEDAdjust(calibration_mode_t mode)
 {
 	bool_t retVal = FALSE;
@@ -323,6 +268,13 @@ static bool_t re46c109_FEEDAdjust(calibration_mode_t mode)
 	return (retVal);
 }
 
+
+/**
+ * @brief Calibrate the smoke sensor individual modes 
+ * @param void
+ * @returns None
+ * TODO: Test this and write it better if necessary 
+ */
 void re46c109_smokeCalibrate(void)
 {
 	re46c109_initIo();
@@ -385,10 +337,14 @@ void re46c109_smokeCalibrate(void)
  */
 void re46c109_runModeT0(struct re46c109_reg_t dataT0)
 {
-	re46c109_sendDataT0(dataT0);
+	re46c109_sendData(dataT0);
 }
 
-
+/**
+ * @brief Enter T6 read/write mode to store specific configuration data into EEPROM
+ * @param dataT6 struct re46c109_reg_t configuration register for parameter to set
+ * @returns None
+ */
 void re46c109_runModeT6(struct re46c109_reg_t dataT6)
 {
 	/*Enter T6 mode by clocking Test 6 times*/
@@ -396,21 +352,58 @@ void re46c109_runModeT6(struct re46c109_reg_t dataT6)
 	
 	sleep_us(50);
 	/* Send and store serial data to EEPROM */
-	re46c109_sendDataT6(dataT6);
+	re46c109_sendData(dataT6);
 }
 
 
-
-
-bool_t re46c109_verify(void)
+/**
+ * @brief Execute test mode between T7 and T10
+ * @param testMode verification_mode_t mode to select
+ * @returns None
+ */
+void re46c109_runTest(verification_mode_t testMode)
 {
-	bool_t retVal = FALSE;
-
-	return (retVal);
+	uint8_t i;
+	gpio_set(GPIOA, TEST2_PIN);
+	/* 5s setup time */
+	sleep_us(5);
+	
+	/*Enter mode by clocking Test for testMode (7,..;10) times*/
+	re46c109_TESTClock((uint8_t)testMode);
+	sleep_us(20);
+	
+	for(i = 0; i < 4; i++)
+	{
+		gpio_set(GPIOC, FEED_PIN);
+		sleep_ms(4);
+		gpio_clear(GPIOC, FEED_PIN);
+		sleep_ms(8);
+	}
+	gpio_clear(GPIOA, TEST2_PIN);
 }
 
 
-
+/**
+ * @brief Operate the horn test. Observe IO pin ans well as the horn output
+ * @param void
+ * @returns None
+ */
+void re46c109_testHorn(void)
+{
+	gpio_set(GPIOA, TEST2_PIN);
+	/* 5s setup time */
+	sleep_us(5);
+	
+	/*Enter T11 mode by clocking Test 11 times*/
+	re46c109_TESTClock(VERIF_T11_MODE);
+	sleep_us(20);
+	
+	gpio_set(GPIOB, IO_PIN);
+	sleep_ms(1);
+	
+	gpio_clear(GPIOB, IO_PIN);
+	gpio_clear(GPIOA, TEST2_PIN);
+}
 
 
 void tim3_isr(void)
