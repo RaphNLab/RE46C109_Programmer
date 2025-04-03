@@ -1,6 +1,6 @@
 #include "uart_drv.h"
 #include "memory.h"
-
+#include "RE46C109_drv.h"
 /**
  * Data type, Constant and macro definitions
  *
@@ -146,7 +146,8 @@ void UartHandleCmd_Task(UartDev_T *uartDev)
 
 		if((strcasecmp(args[0], (const char*)uartCmdList[AT_RUN_T0])) == 0)
 		{
-			printf("Calibration starts\n");
+			printf("Calibration T0 starts\n");
+			re46c109_runModeT0(config_reg);
 		}
 		else if((strcasecmp(args[0], (const char*)uartCmdList[AT_RUN_T1])) == 0)
 		{
@@ -172,6 +173,7 @@ void UartHandleCmd_Task(UartDev_T *uartDev)
 		else if((strcasecmp(args[0], (const char*)uartCmdList[AT_RUN_T6])) == 0)
 		{
 			printf("Serial Read/Write\n");
+			re46c109_runModeT6(config_reg);
 		}
 		else if((strcasecmp(args[0], (const char*)uartCmdList[AT_RUN_T7])) == 0)
 		{

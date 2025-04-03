@@ -1,9 +1,9 @@
-
 #include "drivers/RE46C109_drv.h"
+#include "drivers/uart_drv.h"
 #include "drivers/timer_drv.h"
 #include "drivers/uart_drv.h"
 #include "drivers/led_driver.h"
-#include "drivers/uart_drv.h"
+
 
 
 int main(void)
@@ -18,8 +18,9 @@ int main(void)
 	while (1)
 	{
 		UartHandleCmd_Task(&myUartDev);
-
-		re46c109_runModeT0(config_reg);
+		//re46c109_runModeT0(config_reg);
+		
+		//re46c109_runModeT6(config_reg);
 	}
 	return (0);
 }

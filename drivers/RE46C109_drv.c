@@ -17,6 +17,9 @@
 static void re46c109_testConfig(void);
 static void re46c109_feedConfig(void);
 static void re46c109_TESTClock(uint8_t clockAmount);
+static void re46c109_sendDataT0(struct re46c109_reg_t configReg);
+static void re46c109_sendDataT6(struct re46c109_reg_t configReg);
+static void re46c109_initIo(void);
 
 /**
  * Global variable declaration / definition
@@ -25,7 +28,7 @@ static void re46c109_TESTClock(uint8_t clockAmount);
 state_t next_state = START;
 calibration_mode_t calibrationMode = CAL_T1_MODE;
 verification_mode_t verificationMode = VERIF_T7_MODE;
-bool_t prameterIsrFlag = FALSE;
+bool_t parameterIsrFlag = FALSE;
 bool_t smokeCalibrationIsrFalg = FALSE;
 sequence_t next_sequence = PARAMETRIC_SELECTION;
 
@@ -97,7 +100,7 @@ void re46c109_config(void)
  * @param configReg struct re46c109_reg_t configuration register for parameter to set
  * @returns None
  */
-void re46c109_runModeT0(struct re46c109_reg_t configReg)
+static void re46c109_sendDataT0(struct re46c109_reg_t configReg)
 {
 	uint16_t i;
 	static volatile uint64_t mask = (uint64_t)pow((double)2, (double)RE46C109_REG_SIZE);
@@ -105,7 +108,7 @@ void re46c109_runModeT0(struct re46c109_reg_t configReg)
 
 	data = (uint64_t *)&configReg;
 	gpio_set(GPIOA, TEST2_PIN);
-	for(i = 0; i <= RE46C109_REG_SIZE && prameterIsrFlag; i++)
+	for(i = 0; i <= RE46C109_REG_SIZE && parameterIsrFlag; i++)
 	{
 		switch(next_state)
 		{
@@ -144,11 +147,11 @@ void re46c109_runModeT0(struct re46c109_reg_t configReg)
 			gpio_clear(GPIOC, FEED_PIN);
 			break;
 		}
-		prameterIsrFlag = FALSE;
+		parameterIsrFlag = FALSE;
 	}
 
 	/*Register content completely transmitted*/
-	if((mask == 0) && prameterIsrFlag)
+	if((mask == 0) && parameterIsrFlag)
 	{
 		gpio_set(GPIOB, IO_PIN);
 		sleep_ms(20);
@@ -157,7 +160,72 @@ void re46c109_runModeT0(struct re46c109_reg_t configReg)
 		sleep_ms(5);
 		mask = (uint64_t)pow((double)2, (double)RE46C109_REG_SIZE);
 		i = 0;
-		prameterIsrFlag = FALSE;
+		parameterIsrFlag = FALSE;
+	}
+}
+
+
+static void re46c109_sendDataT6(struct re46c109_reg_t configReg)
+{
+	uint16_t i;
+	static volatile uint64_t mask = (uint64_t)pow((double)2, (double)RE46C109_REG_SIZE);
+	uint64_t *data;
+
+	data = (uint64_t *)&configReg;
+	gpio_set(GPIOA, TEST2_PIN);
+	for(i = 0; i <= RE46C109_REG_SIZE && parameterIsrFlag; i++)
+	{
+		switch(next_state)
+		{
+		case START:
+			/* Do nothing*/
+			gpio_clear(GPIOB, TEST_PIN);
+			gpio_clear(GPIOC, FEED_PIN);
+			next_state = SET_TEST;
+			break;
+		case SET_TEST:
+			if((*data) & mask)
+			{
+				gpio_set(GPIOB, TEST_PIN);
+			}
+			else
+			{
+				gpio_clear(GPIOB, TEST_PIN);
+			}
+			mask >>= 1;
+			next_state = SET_FEED;
+			break;
+		case SET_FEED:
+			gpio_set(GPIOC, FEED_PIN);
+			next_state = RESET_FEED;
+			break;
+		case RESET_FEED:
+			gpio_clear(GPIOC, FEED_PIN);
+			next_state = RESET_TEST;
+			break;
+		case RESET_TEST:
+			gpio_clear(GPIOB, TEST_PIN);
+			next_state = START;
+			break;
+		default:
+			gpio_clear(GPIOB, TEST_PIN);
+			gpio_clear(GPIOC, FEED_PIN);
+			break;
+		}
+		parameterIsrFlag = FALSE;
+	}
+
+	/*Register content completely transmitted*/
+	if((mask == 0) && parameterIsrFlag)
+	{
+		gpio_set(GPIOB, IO_PIN);
+		sleep_ms(20);
+		gpio_clear(GPIOB, IO_PIN);
+		gpio_clear(GPIOA, TEST2_PIN);
+		sleep_ms(5);
+		mask = (uint64_t)pow((double)2, (double)RE46C109_REG_SIZE);
+		i = 0;
+		parameterIsrFlag = FALSE;
 	}
 }
 
@@ -286,6 +354,30 @@ void re46c109_smokeCalibrate(void)
 }
 
 
+/**
+ * @brief Configure the RE46C190 by setting calibration parameters
+ * @param configReg struct re46c109_reg_t configuration register for parameter to set
+ * @returns None
+ */
+void re46c109_runModeT0(struct re46c109_reg_t dataT0)
+{
+	re46c109_sendDataT0(dataT0);
+}
+
+
+void re46c109_runModeT6(struct re46c109_reg_t dataT6)
+{
+	/*Enter T6 mode by clocking Test 6 times*/
+	re46c109_TESTClock(CAL_T6_MODE);
+	
+	sleep_us(50);
+	/* Send and store serial data to EEPROM */
+	re46c109_sendDataT6(dataT6);
+}
+
+
+
+
 bool_t re46c109_verify(void)
 {
 	bool_t retVal = FALSE;
@@ -302,12 +394,6 @@ void tim3_isr(void)
 	if (timer_get_flag(TIM3, TIM_SR_UIF))
 	{
 		timer_clear_flag(TIM3, TIM_SR_UIF);
-		prameterIsrFlag = TRUE;
+		parameterIsrFlag = TRUE;
 	}
 }
-
-
-
-
-
-

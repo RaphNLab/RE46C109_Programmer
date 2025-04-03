@@ -1,4 +1,4 @@
-PROJECT = button_debounce
+PROJECT = RE46C109_Programmer
 BUILD_DIR = bin
 DRIVER_DIR = drivers
 

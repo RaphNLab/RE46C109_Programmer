@@ -37,6 +37,7 @@ typedef enum
 	CAL_T3_MODE,
 	CAL_T4_MODE,
 	CAL_T5_MODE,
+	CAL_T6_MODE,
 	CAL_MODE_END
 }calibration_mode_t;
 
@@ -75,10 +76,10 @@ extern uint8_t isr_flag;
 
 
 void re46c109_config(void);
-void re46c109_send_data(void);
-
-void re46c109_runModeT0(struct re46c109_reg_t configReg);
 void re46c109_smokeCalibrate(void);
+
+void re46c109_runModeT0(struct re46c109_reg_t dataT0);
+void re46c109_runModeT6(struct re46c109_reg_t dataT6);
 bool_t re46c109_verify(void);
 
 #endif
