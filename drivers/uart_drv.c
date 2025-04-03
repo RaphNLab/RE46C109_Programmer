@@ -15,19 +15,19 @@ uint8_t isrCnt = 0;
 
 char *uartCmdList[] =
 {
-	"AT+RUN_T0",  /* Run T0 for calibration */
-	"AT+RUN_T1",  /* Run T1 To set Normal Limit */
-	"AT+RUN_T2",  /* Run T2 to set Hysteresis */
-	"AT+RUN_T3",  /* Run T3 to set hush limitation */
-	"AT+RUN_T4",  /* Run T4 to set ch test limitation*/
-	"AT+RUN_T5",  /* Run T5 to run LTD baseline */
-	"AT+RUN_T6",  /* Run T6 for serial read/write */
-	"AT+RUN_T7",  /* Run T7 to perform Norm limitation check*/
-	"AT+RUN_T8",  /* Run T8 to perform Hysteresis limitation check */
-	"AT+RUN_T9",  /* Run T9 to perform Hush limitation check*/
-	"AT+RUN_T10", /* Run T10 to perform Ch Test limitation check */
-	"AT+RUN_T11", /* Run T11 to perform Horn test */
-	"AT+SMOKE_CALIBRATE" /* Run mode T1 to T5*/
+	"RUN_T0",  /* Run T0 for calibration */
+	"RUN_T1",  /* Run T1 To set Normal Limit */
+	"RUN_T2",  /* Run T2 to set Hysteresis */
+	"RUN_T3",  /* Run T3 to set hush limitation */
+	"RUN_T4",  /* Run T4 to set ch test limitation*/
+	"RUN_T5",  /* Run T5 to run LTD baseline */
+	"RUN_T6",  /* Run T6 for serial read/write */
+	"RUN_T7",  /* Run T7 to perform Norm limitation check*/
+	"RUN_T8",  /* Run T8 to perform Hysteresis limitation check */
+	"RUN_T9",  /* Run T9 to perform Hush limitation check*/
+	"RUN_T10", /* Run T10 to perform Ch Test limitation check */
+	"RUN_T11", /* Run T11 to perform Horn test */
+	"SMOKE_CALIBRATE" /* Run mode T1 to T5*/
 };
 
 
@@ -144,54 +144,54 @@ void UartHandleCmd_Task(UartDev_T *uartDev)
 			token = strtok(NULL, " ");
 		}
 
-		if((strcasecmp(args[0], (const char*)uartCmdList[AT_RUN_T0])) == 0)
+		if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T0])) == 0)
 		{
 			printf("Calibration T0 starts\n");
 			re46c109_runModeT0(config_reg);
 		}
-		else if((strcasecmp(args[0], (const char*)uartCmdList[AT_RUN_T1])) == 0)
+		else if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T1])) == 0)
 		{
 			printf("Setting Norm Limitation Start\n");
 		}
-		else if((strcasecmp(args[0], (const char*)uartCmdList[AT_RUN_T2])) == 0)
+		else if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T2])) == 0)
 		{
 			/* Suspend all Task not the uart task to monitor incoming command*/
 			printf("Setting Hysteresis Limitation Start\n");
 		}
-		else if((strcasecmp(args[0], (const char*)uartCmdList[AT_RUN_T3])) == 0)
+		else if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T3])) == 0)
 		{
 			printf("Setting Hush Limitation Start\n");
 		}
-		else if((strcasecmp(args[0], (const char*)uartCmdList[AT_RUN_T4])) == 0)
+		else if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T4])) == 0)
 		{
 			printf("Setting CH test Limitation Start\n");
 		}
-		else if((strcasecmp(args[0], (const char*)uartCmdList[AT_RUN_T5])) == 0)
+		else if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T5])) == 0)
 		{
 			printf("LTD BAseline\n");
 		}
-		else if((strcasecmp(args[0], (const char*)uartCmdList[AT_RUN_T6])) == 0)
+		else if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T6])) == 0)
 		{
 			printf("Serial Read/Write\n");
 			re46c109_runModeT6(config_reg);
 		}
-		else if((strcasecmp(args[0], (const char*)uartCmdList[AT_RUN_T7])) == 0)
+		else if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T7])) == 0)
 		{
 			printf("Norm Limitation check Start\n");
 		}
-		else if((strcasecmp(args[0], (const char*)uartCmdList[AT_RUN_T8])) == 0)
+		else if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T8])) == 0)
 		{
 			printf("Hysteresis Limitation check Start\n");
 		}
-		else if((strcasecmp(args[0], (const char*)uartCmdList[AT_RUN_T9])) == 0)
+		else if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T9])) == 0)
 		{
 			printf("Hush Limitation check Start\n");
 		}
-		else if((strcasecmp(args[0], (const char*)uartCmdList[AT_RUN_T11])) == 0)
+		else if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T11])) == 0)
 		{
 			printf("Ch Test limitation check Start\n");
 		}
-		else if((strcasecmp(args[0], (const char*)uartCmdList[AT_RUN_T11])) == 0)
+		else if((strcasecmp(args[0], (const char*)uartCmdList[RUN_T11])) == 0)
 		{
 			printf("Horn test start\n");
 		}

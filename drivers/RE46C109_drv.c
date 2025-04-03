@@ -8,6 +8,7 @@
  */
 
 #include "RE46C109_drv.h"
+#include "global.h"
 #include "timer_drv.h"
 
 
@@ -48,10 +49,10 @@ struct re46c109_reg_t config_reg =
 	.it = 0b11,
 	.pagf = 0b00,
 	.nl = 0b00000,
-	.hyl = 0b00000,
+	.hyl = 0b01100,
 	.hul = 0b00000,
 	.ctl = 0b00000,
-	.ltd = 0b00000
+	.ltd = 0b00110
 };
 
 
@@ -95,6 +96,26 @@ void re46c109_config(void)
 }
 
 
+
+/**
+ * @brief Initialize all necessary IO-Pins
+ * @param None
+ * @returns none
+**/
+static void re46c109_initIo(void)
+{
+	/* Set all pins to Vss */
+	gpio_clear(GPIOB, (IO_PIN | TEST_PIN));
+	gpio_clear(GPIOA, TEST2_PIN);
+	gpio_clear(GPIOC, FEED_PIN);
+
+
+	/* Set TEST2_PIN to Vdd till the end of the calibration*/
+	gpio_set(GPIOA, TEST2_PIN);
+	/* Setup time*/
+	sleep_ms(5);
+}
+
 /**
  * @brief Configure the RE46C190 by setting calibration parameters
  * @param configReg struct re46c109_reg_t configuration register for parameter to set
@@ -102,52 +123,64 @@ void re46c109_config(void)
  */
 static void re46c109_sendDataT0(struct re46c109_reg_t configReg)
 {
-	uint16_t i;
+	volatile uint16_t i;
+	bool_t bitSent = FALSE;
 	static volatile uint64_t mask = (uint64_t)pow((double)2, (double)RE46C109_REG_SIZE);
 	uint64_t *data;
 
 	data = (uint64_t *)&configReg;
 	gpio_set(GPIOA, TEST2_PIN);
-	for(i = 0; i <= RE46C109_REG_SIZE && parameterIsrFlag; i++)
+	for(i = 0; i <= RE46C109_REG_SIZE; i++)
 	{
-		switch(next_state)
-		{
-		case START:
-			/* Do nothing*/
-			gpio_clear(GPIOB, TEST_PIN);
-			gpio_clear(GPIOC, FEED_PIN);
-			next_state = SET_TEST;
-			break;
-		case SET_TEST:
-			if((*data) & mask)
+		bitSent = FALSE;
+		while(!bitSent)
+		{			
+			switch(next_state)
 			{
-				gpio_set(GPIOB, TEST_PIN);
+				case START:
+					/* Do nothing*/
+					gpio_clear(GPIOB, TEST_PIN);
+					gpio_clear(GPIOC, FEED_PIN);
+					next_state = SET_TEST;
+					break;
+				case SET_TEST:
+					if((*data) & mask)
+					{
+						gpio_set(GPIOB, TEST_PIN);
+					}
+					else
+					{
+						gpio_clear(GPIOB, TEST_PIN);
+					}
+					next_state = SET_FEED;
+					sleep_us(50);
+					break;
+				case SET_FEED:
+					gpio_set(GPIOC, FEED_PIN);
+					next_state = RESET_FEED;
+					sleep_us(20);
+					break;
+				case RESET_FEED:
+					gpio_clear(GPIOC, FEED_PIN);
+					next_state = RESET_TEST;
+					sleep_us(50);
+					break;
+				case RESET_TEST:
+					/* Reset TEST pin only if next bit is 0*/
+					mask >>= 1;
+					if(((*data) & mask) != 1)
+					{
+						gpio_clear(GPIOB, TEST_PIN);
+					}
+					next_state = START;
+					bitSent = TRUE;
+					break;
+				default:
+					gpio_clear(GPIOB, TEST_PIN);
+					gpio_clear(GPIOC, FEED_PIN);
+					break;
 			}
-			else
-			{
-				gpio_clear(GPIOB, TEST_PIN);
-			}
-			mask >>= 1;
-			next_state = SET_FEED;
-			break;
-		case SET_FEED:
-			gpio_set(GPIOC, FEED_PIN);
-			next_state = RESET_FEED;
-			break;
-		case RESET_FEED:
-			gpio_clear(GPIOC, FEED_PIN);
-			next_state = RESET_TEST;
-			break;
-		case RESET_TEST:
-			gpio_clear(GPIOB, TEST_PIN);
-			next_state = START;
-			break;
-		default:
-			gpio_clear(GPIOB, TEST_PIN);
-			gpio_clear(GPIOC, FEED_PIN);
-			break;
 		}
-		parameterIsrFlag = FALSE;
 	}
 
 	/*Register content completely transmitted*/
@@ -292,16 +325,7 @@ static bool_t re46c109_FEEDAdjust(calibration_mode_t mode)
 
 void re46c109_smokeCalibrate(void)
 {
-	/* Set all pins to Vss */
-	gpio_clear(GPIOB, (IO_PIN | TEST_PIN));
-	gpio_clear(GPIOA, TEST2_PIN);
-	gpio_clear(GPIOC, FEED_PIN);
-
-
-	/* Set TEST2_PIN to Vdd till the end of the calibration*/
-	gpio_set(GPIOA, TEST2_PIN);
-	/* Setup time*/
-	sleep_ms(5);
+	re46c109_initIo();
 
 	while(calibrationMode != CAL_MODE_END)
 	{
@@ -397,3 +421,6 @@ void tim3_isr(void)
 		parameterIsrFlag = TRUE;
 	}
 }
+
+
+

@@ -16,28 +16,26 @@
 
 
 
-
-
 /*User  Typedef and enum */
 
 #define AT_CMD(action,  status) "AT+CMD" #action " " #status
 
 typedef enum
 {
-	AT_RUN_T0 = 0,
-	AT_RUN_T1,
-	AT_RUN_T2,
-	AT_RUN_T3,
-	AT_RUN_T4,
-	AT_RUN_T5,
-	AT_RUN_T6,
-	AT_RUN_T7,
-	AT_RUN_T8,
-	AT_RUN_T9,
-	AT_RUN_T10,
-	AT_RUN_T11,
-	AT_SMOKE_CALIBRATE,
-	AT_INVALID
+	RUN_T0 = 0,
+	RUN_T1,
+	RUN_T2,
+	RUN_T3,
+	RUN_T4,
+	RUN_T5,
+	RUN_T6,
+	RUN_T7,
+	RUN_T8,
+	RUN_T9,
+	RUN_T10,
+	RUN_T11,
+	SMOKE_CALIBRATE,
+	INVALID
 }UartAtCmd_t;
 
 
