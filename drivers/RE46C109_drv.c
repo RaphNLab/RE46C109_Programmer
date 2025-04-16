@@ -38,20 +38,20 @@ sequence_t next_sequence = PARAMETRIC_SELECTION;
  * */
 struct re46c109_reg_t config_reg =
 {
-	.ts = 0b1,
-	.eol = 0b0,
-	.lbh = 0b0,
-	.hush = 0b0,
-	.ltde = 0b0,
-	.lb = 0b010,
-	.irc = 0b00,
-	.it = 0b11,
-	.pagf = 0b00,
-	.nl = 0b00000,
-	.hyl = 0b00000,
-	.hul = 0b00000,
+	.ltd = 0b00110,
 	.ctl = 0b00000,
-	.ltd = 0b00110
+	.hul = 0b00000,
+	.hyl = 0b00000,
+	.nl = 0b00000,
+	.pagf = 0b00,
+	.it = 0b11,
+	.irc = 0b00,
+	.lb = 0b010,
+	.ltde = 0b0,
+	.hush = 0b0,
+	.lbh = 0b0,
+	.eol = 0b0,
+	.ts = 0b1
 };
 
 
@@ -124,7 +124,7 @@ static void re46c109_sendData(struct re46c109_reg_t configReg)
 {
 	volatile uint16_t i;
 	bool_t bitSent = FALSE;
-	static volatile uint64_t mask = (uint64_t)pow((double)2, (double)RE46C109_REG_SIZE);
+	uint64_t mask = 1;//(uint64_t)pow((double)2, (double)RE46C109_REG_SIZE);
 	uint64_t *data;
 	data = (uint64_t *)&configReg;
 	
@@ -132,7 +132,7 @@ static void re46c109_sendData(struct re46c109_reg_t configReg)
 	/* 5s setup time */
 	sleep_us(5);
 	
-	for(i = 0; i <= RE46C109_REG_SIZE; i++)
+	for(i = 0; i < RE46C109_REG_SIZE; i++)
 	{
 		bitSent = FALSE;
 		while(!bitSent)
@@ -169,7 +169,7 @@ static void re46c109_sendData(struct re46c109_reg_t configReg)
 					break;
 				case RESET_TEST:
 					/* Reset TEST pin only if next bit is 0*/
-					mask >>= 1;
+					mask <<= 1;
 					if(((*data) & mask) != 1)
 					{
 						gpio_clear(GPIOB, TEST_PIN);
@@ -193,7 +193,7 @@ static void re46c109_sendData(struct re46c109_reg_t configReg)
 		gpio_clear(GPIOB, IO_PIN);
 		gpio_clear(GPIOA, TEST2_PIN);
 		sleep_ms(5);
-		mask = (uint64_t)pow((double)2, (double)RE46C109_REG_SIZE);
+		mask = 1;//(uint64_t)pow((double)2, (double)RE46C109_REG_SIZE);
 		i = 0;
 		parameterIsrFlag = FALSE;
 	}

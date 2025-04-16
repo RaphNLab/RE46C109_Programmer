@@ -14,20 +14,20 @@
 
 struct __attribute__((packed, aligned(sizeof(uint64_t)))) re46c109_reg_t
 {
-	uint16_t ts:1;   /*Tone set bit*/
-	uint16_t eol:1;  /*End of Life Enable bit*/
-	uint16_t lbh:1;  /*Low Battery Hush Enable bit*/
-	uint16_t hush:1; /* Hush Option bit*/
-	uint16_t ltde:1; /*Log-Term Drift Enable bit*/
-	uint16_t lb:3;   /*Low Battery Trip Point bits*/
-	uint16_t irc:2;  /*IRED Current bits*/
-	uint16_t it:2;   /*Integration Time bits*/
-	uint16_t pagf:2; /*Photo Amplifier Gain Factor bits*/
-	uint16_t nl:5;   /*Normal Limits bits*/
-	uint16_t hyl:5;  /*Hysteresis Limit bits*/
-	uint16_t hul:5;  /*Hush limit bits*/
-	uint16_t ctl:5;  /*Chamber Test Limits bits*/
 	uint16_t ltd:5;  /*Long Term Drift Sample bits*/
+	uint16_t ctl:5;  /*Chamber Test Limits bits*/
+	uint16_t hul:5;  /*Hush limit bits*/
+	uint16_t hyl:5;  /*Hysteresis Limit bits*/
+	uint16_t nl:5;   /*Normal Limits bits*/
+	uint16_t pagf:2; /*Photo Amplifier Gain Factor bits*/
+	uint16_t it:2;   /*Integration Time bits*/
+	uint16_t irc:2;  /*IRED Current bits*/
+	uint16_t lb:3;   /*Low Battery Trip Point bits*/
+	uint16_t ltde:1; /*Log-Term Drift Enable bit*/
+	uint16_t hush:1; /* Hush Option bit*/
+	uint16_t lbh:1;  /*Low Battery Hush Enable bit*/
+	uint16_t eol:1;  /*End of Life Enable bit*/
+	uint16_t ts:1;   /*Tone set bit*/	
 };
 
 typedef enum
