@@ -36,6 +36,20 @@ typedef enum
 	RUN_T11,
 	SMOKE_CALIBRATE,
 	HELP,
+	SET_LTD,
+	SET_CTL,
+	SET_HUL,
+	SET_HYL,
+	SET_NL,
+	SET_PAGF,
+	SET_IT,
+	SET_IRC,
+	SET_LB,
+	LTDE,
+	HUSH,
+	LBH,
+	EOL,
+	SET_TS,
 	INVALID
 }UartAtCmd_t;
 

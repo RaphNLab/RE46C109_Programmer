@@ -28,7 +28,60 @@ char *uartCmdList[] =
 	"RUN_T10", /* Run T10 to perform Ch Test limitation check */
 	"RUN_T11", /* Run T11 to perform Horn test */
 	"SMOKE_CALIBRATE", /* Run mode T1 to T5*/
-	"HELP"
+	"HELP",
+	
+	"SET_LTD",  /* Long Term Drift Sample bits From 0 to 31 */ 
+	"SET_CTL", 	/* Chamber Test Limits bits From 0 to 31    */
+	"SET_HUL",  /* Hush Limits bits From 0 to 31 			*/
+	"SET_HYL",	/* Set Hysteresis Limits bits From 0 to 31  */
+	"SET_NL",	/* Set Normal Limits bits NL [From 0 to 31] */
+	"SET_PAGF",	/* Set Photo Amplifier Gain Factor bits
+				   0 = 1
+				   1 = 2
+				   2 = 3
+				   3 = 4
+				*/
+	"SET_IT",	/* Set Integration Time bits
+				   0 = 400 µs
+				   1 = 300 µs
+				   2 = 200 µs
+				   3 = 100 µs
+				*/
+	"SET_IRC",	/* Set IRED Current bits
+				   0 = 50 mA
+				   1 = 100 mA
+				   2 = 150 mA
+				   3 = 200 mA
+				*/
+	"SET_LB",	/* Set Low Battery Trip Point 0 = 2.1V
+											  1 = 2.5V
+											  2 = 2.3V
+											  3 = 2.7V
+											  4 = 2.2V
+											  5 = 2.6V
+											  6 = 2.4V
+											  7 = 2.8V  
+				*/
+	"LTDE",		/* Enable/Disable Long-Term Drift Enable bit 
+				   1 = Enable
+				   0 = Disable
+				*/ 
+	"HUSH", 	/* Enable/disable
+				   1 = Canceled
+				   0 = Never Cancel
+				*/
+	"LBH", 		/* Enable/Disable Low Battery Hush 
+				   1 = Enable 
+				   0 = Disable
+				*/
+	"EOL", 		/* Enable/Disable End of Life
+				   1 = Enable
+				   0 = Disable
+				*/
+	"SET_TS"   	/* Set tone 
+				   1 = Temporal Horn
+				   0 = Continuous Horn 
+				 */
 };
 
 
@@ -127,6 +180,7 @@ void uartDevConfig(UartDev_T *uartDev, uint32_t uartBase, uint8_t *rxBuffer, uin
  * */
 void UartHandleCmd_Task(UartDev_T *uartDev)
 {
+	int8_t arg = 0;
 	if(uartDev->uartRxFlag == UART_RX_CMP)
 	{
 		char *args[16];
@@ -204,6 +258,212 @@ void UartHandleCmd_Task(UartDev_T *uartDev)
 		else if((strcasecmp(args[0], (const char*)uartCmdList[HELP])) == 0)
 		{
 			printMenu();
+		}
+		else if((strcasecmp(args[0], (const char*)uartCmdList[SET_LTD])) == 0)
+		{
+			arg = atoi(args[1]);
+			if(arg < 0 && arg > 31)
+			{
+				printf("Invalid argument\n");
+			}
+			else 
+			{
+				config_reg.ltd = arg;
+				printf("Long Term Drift Sample set to: %d\n", arg);
+			}
+		}
+		else if((strcasecmp(args[0], (const char*)uartCmdList[SET_CTL])) == 0)
+		{
+			arg = atoi(args[1]);
+			if(arg < 0 && arg > 31)
+			{
+				printf("Invalid argument\n");
+			}
+			else 
+			{
+				config_reg.ctl = arg;
+				printf("Chamber Test Limits set to: %d\n", arg);
+			}
+		}
+		else if((strcasecmp(args[0], (const char*)uartCmdList[SET_HUL])) == 0)
+		{
+			arg = atoi(args[1]);
+			if(arg < 0 && arg > 31)
+			{
+				printf("Invalid argument\n");
+			}
+			else 
+			{
+				config_reg.hush = arg;
+				printf("Hush Limits set to: %d\n", arg);
+			}
+		}
+		else if((strcasecmp(args[0], (const char*)uartCmdList[SET_HYL])) == 0)
+		{
+			arg = atoi(args[1]);
+			if(arg < 0 && arg > 31)
+			{
+				printf("Invalid argument\n");
+			}
+			else 
+			{
+				config_reg.hyl = arg;
+				printf("Hysteresis Limits set to: %d\n", arg);
+			}
+		}
+		else if((strcasecmp(args[0], (const char*)uartCmdList[SET_NL])) == 0)
+		{
+			arg = atoi(args[1]);
+			if(arg < 0 && arg > 31)
+			{
+				printf("Invalid argument\n");
+			}
+			else 
+			{
+				config_reg.nl = arg;
+				printf("Normal Limits set to: %d\n", arg);
+			}
+		}
+		else if((strcasecmp(args[0], (const char*)uartCmdList[SET_PAGF])) == 0)
+		{
+			arg = atoi(args[1]);
+			if(arg < 0 && arg > 3)
+			{
+				printf("Invalid argument\n");
+			}
+			else 
+			{
+				config_reg.pagf = arg;
+				printf("Photo Amplifier Gain Factor set to: %d\n", arg);
+			}
+		}
+		else if((strcasecmp(args[0], (const char*)uartCmdList[SET_IT])) == 0)
+		{
+			arg = atoi(args[1]);
+			if(arg < 0 && arg > 3)
+			{
+				printf("Invalid argument\n");
+			}
+			else 
+			{
+				config_reg.it = arg;
+				printf("Integration Time set to: %d\n", arg);
+			}
+		}
+		else if((strcasecmp(args[0], (const char*)uartCmdList[SET_IRC])) == 0)
+		{
+			arg = atoi(args[1]);
+			if(arg < 0 && arg > 3)
+			{
+				printf("Invalid argument\n");
+			}
+			else 
+			{
+				config_reg.irc = arg;
+				printf("IRED Current set to: %d\n", arg);
+			}
+		}
+		else if((strcasecmp(args[0], (const char*)uartCmdList[SET_LB])) == 0)
+		{
+			if(arg < 0 && arg > 7)
+			{
+				printf("Invalid argument\n");
+			}
+			else 
+			{
+				config_reg.lb = arg; 
+				printf("Low Battery Trip Point set to: %d\n", arg);
+			}
+		}
+		else if((strcasecmp(args[0], (const char*)uartCmdList[LTDE])) == 0)
+		{
+			arg = atoi(args[1]);
+			if(arg == 1)
+			{
+				config_reg.ltde = arg;
+				printf("Long-Term Drift Enable\n");
+			}
+			else if(arg == 0)
+			{
+				config_reg.ltde = arg;
+				printf("Long-Term Drift Disable\n");
+			}
+			else
+			{
+				printf("Invalid argument \n");
+			}
+		}
+		else if((strcasecmp(args[0], (const char*)uartCmdList[HUSH])) == 0)
+		{
+			arg = atoi(args[1]);
+			if(arg == 1)
+			{
+				config_reg.hush = arg;
+				printf("Hush Canceled\n");
+			}
+			else if(arg == 0)
+			{
+				config_reg.hush = arg;
+				printf("Hush Never Cancel\n");
+			}
+			else
+			{
+				printf("Invalid argument \n");
+			}
+		}
+		else if((strcasecmp(args[0], (const char*)uartCmdList[LBH])) == 0)
+		{
+			arg = atoi(args[1]);
+			if(arg == 1)
+			{
+				config_reg.lbh = arg;
+				printf("Low Battery Hush Enable\n");
+			}
+			else if(arg == 0)
+			{
+				config_reg.lbh = arg;
+				printf("Low Battery Hush Disable\n");
+			}
+			else
+			{
+				printf("Invalid argument \n");
+			}
+		}
+		else if((strcasecmp(args[0], (const char*)uartCmdList[EOL])) == 0)
+		{
+			arg = atoi(args[1]);
+			if(arg == 1)
+			{
+				config_reg.eol = arg;
+				printf("End of Life Enable\n");
+			}
+			else if(arg == 0)
+			{
+				config_reg.eol = arg;
+				printf("End of Life Disable\n");
+			}
+			else
+			{
+				printf("Invalid argument \n");
+			}
+		}
+		else if((strcasecmp(args[0], (const char*)uartCmdList[SET_TS])) == 0)
+		{
+			arg = atoi(args[1]);
+			if(arg == 1)
+			{
+				config_reg.ts = arg;
+				printf("Temporal Horn Pattern\n");
+			}
+			else if(args[1] == 0)
+			{
+				config_reg.ts = arg;
+				printf("Continuous Horn Pattern\n");
+			}
+			else
+			{
+				printf("Invalid argument \n");
+			}
 		}
 		else
 		{
