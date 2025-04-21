@@ -124,6 +124,7 @@ static void re46c109_sendData(struct re46c109_reg_t configReg)
 {
 	volatile uint16_t i;
 	bool_t bitSent = FALSE;
+	
 	uint64_t mask = 1;//(uint64_t)pow((double)2, (double)RE46C109_REG_SIZE);
 	uint64_t *data;
 	data = (uint64_t *)&configReg;
@@ -186,7 +187,7 @@ static void re46c109_sendData(struct re46c109_reg_t configReg)
 	}
 
 	/*Register content completely transmitted*/
-	if((mask == 0) && parameterIsrFlag)
+	if((mask == MAX_MASK_VAL) && parameterIsrFlag)
 	{
 		gpio_set(GPIOB, IO_PIN);
 		sleep_ms(20);

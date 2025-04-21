@@ -11,6 +11,7 @@
 #define HB_PIN GPIO2	/* PA2 */
 
 #define RE46C109_REG_SIZE 39U
+#define MAX_MASK_VAL pow((double)2, (double)RE46C109_REG_SIZE)
 
 struct __attribute__((packed, aligned(sizeof(uint64_t)))) re46c109_reg_t
 {
