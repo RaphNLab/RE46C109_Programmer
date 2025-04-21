@@ -53,14 +53,15 @@ char *uartCmdList[] =
 				   2 = 150 mA
 				   3 = 200 mA
 				*/
-	"SET_LB",	/* Set Low Battery Trip Point 0 = 2.1V
-											  1 = 2.5V
-											  2 = 2.3V
-											  3 = 2.7V
-											  4 = 2.2V
-											  5 = 2.6V
-											  6 = 2.4V
-											  7 = 2.8V  
+	"SET_LB",	/* Set Low Battery Trip Point 
+					0 = 2.1V
+					1 = 2.5V
+					2 = 2.3V
+					3 = 2.7V
+					4 = 2.2V
+					5 = 2.6V
+					6 = 2.4V
+					7 = 2.8V  
 				*/
 	"LTDE",		/* Enable/Disable Long-Term Drift Enable bit 
 				   1 = Enable
