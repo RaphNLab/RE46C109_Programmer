@@ -27,7 +27,7 @@ char *uartCmdList[] =
 	"RUN_T9",  /* Run T9 to perform Hush limitation check*/
 	"RUN_T10", /* Run T10 to perform Ch Test limitation check */
 	"RUN_T11", /* Run T11 to perform Horn test */
-	"SMOKE_CALIBRATE", /* Run mode T1 to T5*/
+	"CALIBRATE", /* Run mode T1 to T5*/
 	"HELP",
 	
 	"SET_LTD",  /* Long Term Drift Sample bits From 0 to 31 */ 
@@ -255,6 +255,11 @@ void UartHandleCmd_Task(UartDev_T *uartDev)
 		{
 			printf("Horn test start\n");
 			re46c109_testHorn();
+		}
+		else if((strcasecmp(args[0], (const char*)uartCmdList[CALIBRATE])) == 0)
+		{
+			printf("Calibration start\n");
+			re46c109_smokeCalibrate();
 		}
 		else if((strcasecmp(args[0], (const char*)uartCmdList[HELP])) == 0)
 		{

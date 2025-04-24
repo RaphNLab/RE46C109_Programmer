@@ -34,7 +34,7 @@ typedef enum
 	RUN_T9,
 	RUN_T10,
 	RUN_T11,
-	SMOKE_CALIBRATE,
+	CALIBRATE,
 	HELP,
 	SET_LTD,
 	SET_CTL,
