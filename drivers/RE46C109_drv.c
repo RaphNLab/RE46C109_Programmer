@@ -18,8 +18,13 @@
 static void re46c109_testConfig(void);
 static void re46c109_feedConfig(void);
 static void re46c109_TESTClock(uint8_t clockAmount);
+static void re46c109_FEEDAdjust(calibration_mode_t mode);
 static void re46c109_sendData(struct re46c109_reg_t configReg);
 static void re46c109_initIo(void);
+
+static void re46c109_setTest(void);
+static void re46c109_setFeed(uint8_t repeat, uint16_t duration);
+static void re46c109_setIo(void);
 
 /**
  * Global variable declaration / definition
@@ -112,7 +117,7 @@ static void re46c109_initIo(void)
 	/* Set TEST2_PIN to Vdd till the end of the calibration*/
 	gpio_set(GPIOA, TEST2_PIN);
 	/* Setup time*/
-	sleep_ms(5);
+	sleep_us(5);
 }
 
 /**
@@ -130,7 +135,7 @@ static void re46c109_sendData(struct re46c109_reg_t configReg)
 	data = (uint64_t *)&configReg;
 	
 	gpio_set(GPIOA, TEST2_PIN);
-	/* 5s setup time */
+	/* 5us setup time */
 	sleep_us(5);
 	
 	for(i = 0; i < RE46C109_REG_SIZE; i++)
@@ -190,7 +195,7 @@ static void re46c109_sendData(struct re46c109_reg_t configReg)
 	if((mask == MAX_MASK_VAL) && parameterIsrFlag)
 	{
 		gpio_set(GPIOB, IO_PIN);
-		sleep_ms(20);
+		sleep_ms(15);
 		gpio_clear(GPIOB, IO_PIN);
 		gpio_clear(GPIOA, TEST2_PIN);
 		sleep_ms(5);
@@ -220,7 +225,32 @@ static void re46c109_TESTClock(uint8_t clockAmount)
 	}
 }
 
+static void re46c109_setTest(void)
+{
+	gpio_set(GPIOB, TEST_PIN);
+	sleep_us(150);
+	gpio_clear(GPIOB, TEST_PIN);
+}
 
+static void re46c109_setFeed(uint8_t repeat, uint16_t duration)
+{
+	uint8_t i;
+	
+	for(i = 0; i < repeat; i++)
+	{
+		gpio_set(GPIOC, FEED_PIN);
+		sleep_us(duration);
+		gpio_clear(GPIOC, FEED_PIN);
+		sleep_us(20);	
+	}
+}
+
+static void re46c109_setIo(void)
+{
+	gpio_set(GPIOB, IO_PIN);
+	sleep_ms(15);
+	gpio_clear(GPIOB, IO_PIN);
+}
 
 /**
  * @brief Adjust the FEED oin depending on the mode 
@@ -228,45 +258,27 @@ static void re46c109_TESTClock(uint8_t clockAmount)
  * @returns bool_t
  * TODO: Test this and write it better if necessary 
  */
-static bool_t re46c109_FEEDAdjust(calibration_mode_t mode)
+static void re46c109_FEEDAdjust(calibration_mode_t mode)
 {
-	bool_t retVal = FALSE;
 
 	if(mode != CAL_T5_MODE)
 	{
-		while(!retVal)
-		{
-			gpio_set(GPIOC, FEED_PIN);
-			sleep_us(50);
-
-			if(!gpio_get(GPIOA, HB_PIN))
-			{
-				/* Store calibration */
-				gpio_set(GPIOB, IO_PIN);
-				sleep_ms(20);
-				gpio_clear(GPIOB, IO_PIN);
-				retVal = TRUE;
-			}
-		}
+		re46c109_setTest();
+		sleep_us(15);
+		
+		re46c109_setFeed(2, 15);
+		sleep_us(10);
+		
+		re46c109_setIo();
 	}
 	else
 	{
-		while(!retVal)
-		{
-			gpio_set(GPIOC, FEED_PIN);
-			sleep_ms(5);
-
-			if(!gpio_get(GPIOA, HB_PIN))
-			{
-				/* Store calibration */
-				gpio_set(GPIOB, IO_PIN);
-				sleep_ms(20);
-				gpio_clear(GPIOB, IO_PIN);
-				retVal = TRUE;
-			}
-		}
+		re46c109_setTest();
+		sleep_us(15);
+		
+		re46c109_setFeed(1, 4000);
+		sleep_us(10);
 	}
-	return (retVal);
 }
 
 
@@ -279,46 +291,33 @@ static bool_t re46c109_FEEDAdjust(calibration_mode_t mode)
 void re46c109_smokeCalibrate(void)
 {
 	re46c109_initIo();
-
+	
 	while(calibrationMode != CAL_MODE_END)
 	{
 		switch(calibrationMode)
 		{
 		case CAL_T1_MODE:
-			re46c109_TESTClock(CAL_T1_MODE);
-			if(re46c109_FEEDAdjust(calibrationMode))
-			{
-				calibrationMode = CAL_T2_MODE;
-			}
+			re46c109_FEEDAdjust(calibrationMode);
+			calibrationMode = CAL_T2_MODE;
 			break;
 		case CAL_T2_MODE:
-			re46c109_TESTClock(CAL_T2_MODE);
-			if(re46c109_FEEDAdjust(calibrationMode))
-			{
-				calibrationMode = CAL_T4_MODE;
-			}
+			re46c109_FEEDAdjust(calibrationMode);
+			calibrationMode = CAL_T3_MODE;
 			break;
 		case CAL_T3_MODE:
-			re46c109_TESTClock(CAL_T3_MODE);
-			if(re46c109_FEEDAdjust(calibrationMode))
-			{
-				calibrationMode = CAL_T4_MODE;
-			}
+			re46c109_FEEDAdjust(calibrationMode);
+			calibrationMode = CAL_T4_MODE;
 			break;
 		case CAL_T4_MODE:
-			re46c109_TESTClock(CAL_T4_MODE);
-			if(re46c109_FEEDAdjust(calibrationMode))
-			{
-				calibrationMode = CAL_T5_MODE;
-			}
+			re46c109_FEEDAdjust(calibrationMode);
+			calibrationMode = CAL_T5_MODE;
 			break;
 		case CAL_T5_MODE:
-			re46c109_TESTClock(CAL_T5_MODE);
-
+			re46c109_FEEDAdjust(calibrationMode);
+			re46c109_setIo();
 			calibrationMode = CAL_MODE_END;
 			break;
 		case CAL_MODE_END:
-				/* Do nothing */
 				/* The Loop shall break */
 				break;
 		default:
@@ -328,6 +327,10 @@ void re46c109_smokeCalibrate(void)
 			gpio_clear(GPIOC, FEED_PIN);
 		}
 	}
+	gpio_clear(GPIOB, (IO_PIN | TEST_PIN));
+	gpio_clear(GPIOA, TEST2_PIN);
+	gpio_clear(GPIOC, FEED_PIN);
+	calibrationMode = CAL_T1_MODE;
 }
 
 
