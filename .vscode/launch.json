@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug STM32 with (OpenOCD)",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/build/RE46C109_Programmer.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "device": "STM32L152RE",   // your chip model!
+            "configFiles": [
+                "interface/stlink.cfg",    // or jlink.cfg if using J-Link
+                "target/stm32l1.cfg"       // OpenOCD target script for STM32L1
+            ],
+            "svdFile": "${workspaceRoot}/STM32L152.svd",   // optional, for peripheral view
+            "runToEntryPoint": "main",
+            "preLaunchTask": "clean & build",    // optional, if you define a build task
+            "postRestartCommands": [
+                "break main", 
+                "continue"
+            ]
+        }
+    ]
+}

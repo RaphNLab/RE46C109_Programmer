@@ -1,8 +1,8 @@
-#include "drivers/RE46C109_drv.h"
-#include "drivers/uart_drv.h"
-#include "drivers/timer_drv.h"
-#include "drivers/uart_drv.h"
-#include "drivers/led_driver.h"
+#include "RE46C109_drv.h"
+#include "uart_drv.h"
+#include "timer_drv.h"
+#include "uart_drv.h"
+#include "led_driver.h"
 
 
 
