@@ -1,5 +1,0 @@
-/work/smoke_programmer/build/CMakeFiles/libopencm3_project.dir
-/work/smoke_programmer/build/CMakeFiles/RE46C109_Programmer.elf.dir
-/work/smoke_programmer/build/CMakeFiles/flash.dir
-/work/smoke_programmer/build/CMakeFiles/edit_cache.dir
-/work/smoke_programmer/build/CMakeFiles/rebuild_cache.dir
