@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer
+CMAKE_SOURCE_DIR = /work/smoke_programmer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build
+CMAKE_BINARY_DIR = /work/smoke_programmer/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -84,14 +84,14 @@ clean: CMakeFiles/flash.dir/clean
 CMakeFiles/libopencm3_project.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/libopencm3_project.dir/build.make CMakeFiles/libopencm3_project.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/libopencm3_project.dir/build.make CMakeFiles/libopencm3_project.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=9,10,11,12,13,14,15,16 "Built target libopencm3_project"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=9,10,11,12,13,14,15,16 "Built target libopencm3_project"
 .PHONY : CMakeFiles/libopencm3_project.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/libopencm3_project.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /work/smoke_programmer/build/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/libopencm3_project.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /work/smoke_programmer/build/CMakeFiles 0
 .PHONY : CMakeFiles/libopencm3_project.dir/rule
 
 # Convenience name for target.
@@ -110,14 +110,14 @@ CMakeFiles/libopencm3_project.dir/clean:
 CMakeFiles/RE46C109_Programmer.elf.dir/all: CMakeFiles/libopencm3_project.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/RE46C109_Programmer.elf.dir/build.make CMakeFiles/RE46C109_Programmer.elf.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/RE46C109_Programmer.elf.dir/build.make CMakeFiles/RE46C109_Programmer.elf.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target RE46C109_Programmer.elf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target RE46C109_Programmer.elf"
 .PHONY : CMakeFiles/RE46C109_Programmer.elf.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/RE46C109_Programmer.elf.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /work/smoke_programmer/build/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/RE46C109_Programmer.elf.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /work/smoke_programmer/build/CMakeFiles 0
 .PHONY : CMakeFiles/RE46C109_Programmer.elf.dir/rule
 
 # Convenience name for target.
@@ -136,14 +136,14 @@ CMakeFiles/RE46C109_Programmer.elf.dir/clean:
 CMakeFiles/flash.dir/all: CMakeFiles/RE46C109_Programmer.elf.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/flash.dir/build.make CMakeFiles/flash.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/flash.dir/build.make CMakeFiles/flash.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num= "Built target flash"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num= "Built target flash"
 .PHONY : CMakeFiles/flash.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/flash.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /work/smoke_programmer/build/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/flash.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /work/smoke_programmer/build/CMakeFiles 0
 .PHONY : CMakeFiles/flash.dir/rule
 
 # Convenience name for target.

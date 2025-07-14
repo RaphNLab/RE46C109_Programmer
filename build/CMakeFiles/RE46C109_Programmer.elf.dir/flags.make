@@ -4,7 +4,7 @@
 # compile C with /usr/bin/arm-none-eabi-gcc
 C_DEFINES = -DSTM32L1
 
-C_INCLUDES = -I/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers -I/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/../libopencm3/include
+C_INCLUDES = -I/work/smoke_programmer/drivers -I/work/smoke_programmer/../libopencm3/include
 
 C_FLAGS = -Wall -Wextra -O2 -ffreestanding -nostartfiles -lm -mthumb -mcpu=cortex-m3 -mcpu=cortex-m3 -mthumb -fdata-sections -ffunction-sections -Wall -O0 -g3 -std=c99
 

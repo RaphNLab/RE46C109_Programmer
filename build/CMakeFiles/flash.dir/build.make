@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer
+CMAKE_SOURCE_DIR = /work/smoke_programmer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build
+CMAKE_BINARY_DIR = /work/smoke_programmer/build
 
 # Utility rule file for flash.
 
@@ -82,6 +82,6 @@ CMakeFiles/flash.dir/clean:
 .PHONY : CMakeFiles/flash.dir/clean
 
 CMakeFiles/flash.dir/depend:
-	cd /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles/flash.dir/DependInfo.cmake --color=$(COLOR)
+	cd /work/smoke_programmer/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /work/smoke_programmer /work/smoke_programmer /work/smoke_programmer/build /work/smoke_programmer/build /work/smoke_programmer/build/CMakeFiles/flash.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/flash.dir/depend
 

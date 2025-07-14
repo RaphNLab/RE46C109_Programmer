@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer
+CMAKE_SOURCE_DIR = /work/smoke_programmer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build
+CMAKE_BINARY_DIR = /work/smoke_programmer/build
 
 # Utility rule file for libopencm3_project.
 
@@ -76,52 +76,52 @@ CMakeFiles/libopencm3_project-complete: libopencm3_project-prefix/src/libopencm3
 CMakeFiles/libopencm3_project-complete: libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-configure
 CMakeFiles/libopencm3_project-complete: libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-build
 CMakeFiles/libopencm3_project-complete: libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-install
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Completed 'libopencm3_project'"
-	/usr/bin/cmake -E make_directory /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles
-	/usr/bin/cmake -E touch /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles/libopencm3_project-complete
-	/usr/bin/cmake -E touch /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-done
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Completed 'libopencm3_project'"
+	/usr/bin/cmake -E make_directory /work/smoke_programmer/build/CMakeFiles
+	/usr/bin/cmake -E touch /work/smoke_programmer/build/CMakeFiles/libopencm3_project-complete
+	/usr/bin/cmake -E touch /work/smoke_programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-done
 
 libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-build: libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-configure
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Performing build step for 'libopencm3_project'"
-	cd /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/libopencm3 && make TARGETS=stm32/l1
-	cd /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/libopencm3 && /usr/bin/cmake -E touch /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Performing build step for 'libopencm3_project'"
+	cd /work/libopencm3 && make TARGETS=stm32/l1
+	cd /work/libopencm3 && /usr/bin/cmake -E touch /work/smoke_programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-build
 
 libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-configure: libopencm3_project-prefix/tmp/libopencm3_project-cfgcmd.txt
 libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-configure: libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-patch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "No configure step for 'libopencm3_project'"
-	cd /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/libopencm3 && /usr/bin/cmake -E echo_append
-	cd /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/libopencm3 && /usr/bin/cmake -E touch /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-configure
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "No configure step for 'libopencm3_project'"
+	cd /work/libopencm3 && /usr/bin/cmake -E echo_append
+	cd /work/libopencm3 && /usr/bin/cmake -E touch /work/smoke_programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-configure
 
 libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-download: libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-mkdir
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "No download step for 'libopencm3_project'"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "No download step for 'libopencm3_project'"
 	/usr/bin/cmake -E echo_append
-	/usr/bin/cmake -E touch /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-download
+	/usr/bin/cmake -E touch /work/smoke_programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-download
 
 libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-install: libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "No install step for 'libopencm3_project'"
-	cd /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/libopencm3 && /usr/bin/cmake -E echo_append
-	cd /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/libopencm3 && /usr/bin/cmake -E touch /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-install
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "No install step for 'libopencm3_project'"
+	cd /work/libopencm3 && /usr/bin/cmake -E echo_append
+	cd /work/libopencm3 && /usr/bin/cmake -E touch /work/smoke_programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-install
 
 libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-mkdir:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Creating directories for 'libopencm3_project'"
-	/usr/bin/cmake -E make_directory /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/../libopencm3
-	/usr/bin/cmake -E make_directory /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/../libopencm3
-	/usr/bin/cmake -E make_directory /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/libopencm3_project-prefix
-	/usr/bin/cmake -E make_directory /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/libopencm3_project-prefix/tmp
-	/usr/bin/cmake -E make_directory /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp
-	/usr/bin/cmake -E make_directory /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/libopencm3_project-prefix/src
-	/usr/bin/cmake -E make_directory /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp
-	/usr/bin/cmake -E touch /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-mkdir
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Creating directories for 'libopencm3_project'"
+	/usr/bin/cmake -E make_directory /work/smoke_programmer/../libopencm3
+	/usr/bin/cmake -E make_directory /work/smoke_programmer/../libopencm3
+	/usr/bin/cmake -E make_directory /work/smoke_programmer/build/libopencm3_project-prefix
+	/usr/bin/cmake -E make_directory /work/smoke_programmer/build/libopencm3_project-prefix/tmp
+	/usr/bin/cmake -E make_directory /work/smoke_programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp
+	/usr/bin/cmake -E make_directory /work/smoke_programmer/build/libopencm3_project-prefix/src
+	/usr/bin/cmake -E make_directory /work/smoke_programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp
+	/usr/bin/cmake -E touch /work/smoke_programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-mkdir
 
 libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-patch: libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-update
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "No patch step for 'libopencm3_project'"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "No patch step for 'libopencm3_project'"
 	/usr/bin/cmake -E echo_append
-	/usr/bin/cmake -E touch /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-patch
+	/usr/bin/cmake -E touch /work/smoke_programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-patch
 
 libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-update: libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-download
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "No update step for 'libopencm3_project'"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "No update step for 'libopencm3_project'"
 	/usr/bin/cmake -E echo_append
-	/usr/bin/cmake -E touch /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-update
+	/usr/bin/cmake -E touch /work/smoke_programmer/build/libopencm3_project-prefix/src/libopencm3_project-stamp/libopencm3_project-update
 
 libopencm3_project: CMakeFiles/libopencm3_project
 libopencm3_project: CMakeFiles/libopencm3_project-complete
@@ -144,6 +144,6 @@ CMakeFiles/libopencm3_project.dir/clean:
 .PHONY : CMakeFiles/libopencm3_project.dir/clean
 
 CMakeFiles/libopencm3_project.dir/depend:
-	cd /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles/libopencm3_project.dir/DependInfo.cmake --color=$(COLOR)
+	cd /work/smoke_programmer/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /work/smoke_programmer /work/smoke_programmer /work/smoke_programmer/build /work/smoke_programmer/build /work/smoke_programmer/build/CMakeFiles/libopencm3_project.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/libopencm3_project.dir/depend
 

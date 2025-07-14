@@ -3,7 +3,7 @@ set(CMAKE_HOST_SYSTEM_NAME "Linux")
 set(CMAKE_HOST_SYSTEM_VERSION "6.8.0-60-generic")
 set(CMAKE_HOST_SYSTEM_PROCESSOR "x86_64")
 
-include("/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/cmake/arm-gcc-toolchain.cmake")
+include("/work/smoke_programmer/cmake/arm-gcc-toolchain.cmake")
 
 set(CMAKE_SYSTEM "Generic")
 set(CMAKE_SYSTEM_NAME "Generic")

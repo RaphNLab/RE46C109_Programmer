@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer
+CMAKE_SOURCE_DIR = /work/smoke_programmer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build
+CMAKE_BINARY_DIR = /work/smoke_programmer/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/RE46C109_Programmer.elf.dir/depend.make
@@ -72,100 +72,100 @@ include CMakeFiles/RE46C109_Programmer.elf.dir/flags.make
 CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.obj: CMakeFiles/RE46C109_Programmer.elf.dir/flags.make
 CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.obj: ../src/main.c
 CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.obj: CMakeFiles/RE46C109_Programmer.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.obj"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.obj -MF CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.obj.d -o CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.obj -c /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/src/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.obj"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.obj -MF CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.obj.d -o CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.obj -c /work/smoke_programmer/src/main.c
 
 CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.i"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/src/main.c > CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.i
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /work/smoke_programmer/src/main.c > CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.i
 
 CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.s"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/src/main.c -o CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.s
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /work/smoke_programmer/src/main.c -o CMakeFiles/RE46C109_Programmer.elf.dir/src/main.c.s
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.obj: CMakeFiles/RE46C109_Programmer.elf.dir/flags.make
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.obj: ../drivers/led_driver.c
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.obj: CMakeFiles/RE46C109_Programmer.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.obj"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.obj -MF CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.obj.d -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.obj -c /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/led_driver.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.obj"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.obj -MF CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.obj.d -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.obj -c /work/smoke_programmer/drivers/led_driver.c
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.i"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/led_driver.c > CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.i
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /work/smoke_programmer/drivers/led_driver.c > CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.i
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.s"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/led_driver.c -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.s
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /work/smoke_programmer/drivers/led_driver.c -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/led_driver.c.s
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.obj: CMakeFiles/RE46C109_Programmer.elf.dir/flags.make
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.obj: ../drivers/mamory.c
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.obj: CMakeFiles/RE46C109_Programmer.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.obj"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.obj -MF CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.obj.d -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.obj -c /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/mamory.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.obj"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.obj -MF CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.obj.d -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.obj -c /work/smoke_programmer/drivers/mamory.c
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.i"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/mamory.c > CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.i
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /work/smoke_programmer/drivers/mamory.c > CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.i
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.s"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/mamory.c -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.s
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /work/smoke_programmer/drivers/mamory.c -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/mamory.c.s
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.obj: CMakeFiles/RE46C109_Programmer.elf.dir/flags.make
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.obj: ../drivers/RE46C109_drv.c
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.obj: CMakeFiles/RE46C109_Programmer.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.obj"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.obj -MF CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.obj.d -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.obj -c /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/RE46C109_drv.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.obj"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.obj -MF CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.obj.d -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.obj -c /work/smoke_programmer/drivers/RE46C109_drv.c
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.i"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/RE46C109_drv.c > CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.i
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /work/smoke_programmer/drivers/RE46C109_drv.c > CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.i
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.s"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/RE46C109_drv.c -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.s
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /work/smoke_programmer/drivers/RE46C109_drv.c -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/RE46C109_drv.c.s
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.obj: CMakeFiles/RE46C109_Programmer.elf.dir/flags.make
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.obj: ../drivers/systick.c
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.obj: CMakeFiles/RE46C109_Programmer.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.obj"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.obj -MF CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.obj.d -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.obj -c /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/systick.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.obj"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.obj -MF CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.obj.d -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.obj -c /work/smoke_programmer/drivers/systick.c
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.i"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/systick.c > CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.i
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /work/smoke_programmer/drivers/systick.c > CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.i
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.s"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/systick.c -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.s
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /work/smoke_programmer/drivers/systick.c -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/systick.c.s
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.obj: CMakeFiles/RE46C109_Programmer.elf.dir/flags.make
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.obj: ../drivers/timer_drv.c
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.obj: CMakeFiles/RE46C109_Programmer.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.obj"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.obj -MF CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.obj.d -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.obj -c /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/timer_drv.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.obj"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.obj -MF CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.obj.d -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.obj -c /work/smoke_programmer/drivers/timer_drv.c
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.i"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/timer_drv.c > CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.i
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /work/smoke_programmer/drivers/timer_drv.c > CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.i
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.s"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/timer_drv.c -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.s
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /work/smoke_programmer/drivers/timer_drv.c -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/timer_drv.c.s
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.obj: CMakeFiles/RE46C109_Programmer.elf.dir/flags.make
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.obj: ../drivers/uart_drv.c
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.obj: CMakeFiles/RE46C109_Programmer.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.obj"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.obj -MF CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.obj.d -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.obj -c /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/uart_drv.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.obj"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.obj -MF CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.obj.d -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.obj -c /work/smoke_programmer/drivers/uart_drv.c
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.i"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/uart_drv.c > CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.i
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /work/smoke_programmer/drivers/uart_drv.c > CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.i
 
 CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.s"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/drivers/uart_drv.c -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.s
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /work/smoke_programmer/drivers/uart_drv.c -o CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv.c.s
 
 # Object files for target RE46C109_Programmer.elf
 RE46C109_Programmer_elf_OBJECTS = \
@@ -190,7 +190,7 @@ RE46C109_Programmer.elf: CMakeFiles/RE46C109_Programmer.elf.dir/drivers/uart_drv
 RE46C109_Programmer.elf: CMakeFiles/RE46C109_Programmer.elf.dir/build.make
 RE46C109_Programmer.elf: ../../libopencm3/lib/libopencm3_stm32l1.a
 RE46C109_Programmer.elf: CMakeFiles/RE46C109_Programmer.elf.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable RE46C109_Programmer.elf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/work/smoke_programmer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable RE46C109_Programmer.elf"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/RE46C109_Programmer.elf.dir/link.txt --verbose=$(VERBOSE)
 	arm-none-eabi-size RE46C109_Programmer.elf
 	arm-none-eabi-objcopy -O binary RE46C109_Programmer.elf RE46C109_Programmer.bin
@@ -205,6 +205,6 @@ CMakeFiles/RE46C109_Programmer.elf.dir/clean:
 .PHONY : CMakeFiles/RE46C109_Programmer.elf.dir/clean
 
 CMakeFiles/RE46C109_Programmer.elf.dir/depend:
-	cd /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build /home/silvere/Work/Tuto/STM32_Projects/Libopencm3_projects/RE46C109_Programmer/build/CMakeFiles/RE46C109_Programmer.elf.dir/DependInfo.cmake --color=$(COLOR)
+	cd /work/smoke_programmer/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /work/smoke_programmer /work/smoke_programmer /work/smoke_programmer/build /work/smoke_programmer/build /work/smoke_programmer/build/CMakeFiles/RE46C109_Programmer.elf.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/RE46C109_Programmer.elf.dir/depend
 
