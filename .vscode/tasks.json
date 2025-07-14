@@ -29,6 +29,12 @@
                 "base": "$gcc", 
                 "fileLocation": ["relative", "${workspaceFolder}/build"]
             }
+        },
+        {
+            "type": "shell",
+            "label": "Connect_serial",
+            "command": "sudo ${workspaceFolder}/.vscode/connect_serial.sh",
+            "problemMatcher": []
         }
     ]
 }
