@@ -6,4 +6,3 @@ generated.*
 *.bin
 *.elf
 build
-.vscode

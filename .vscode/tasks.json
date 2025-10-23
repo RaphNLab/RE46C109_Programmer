@@ -33,7 +33,7 @@
         {
             "type": "shell",
             "label": "Connect_serial",
-            "command": "sudo ${workspaceFolder}/.vscode/connect_serial.sh",
+            "command": "${workspaceFolder}/.vscode/connect_serial.sh",
             "problemMatcher": []
         }
     ]
